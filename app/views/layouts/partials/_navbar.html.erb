@@ -21,7 +21,8 @@
           <%= link_to 'Contacto', contacto_path, class: "navbar-item is-size-5" %>
           <% if user_signed_in? %>
             <% if current_user.role == 'admin' || current_user.role == 'superadmin'  %>
-              <%= link_to 'Panel Admin', albums_path, class: "navbar-item is-size-5" %>
+              <%= link_to 'Web conf', albums_path, class: "navbar-item is-size-5" %>
+              <%= link_to 'Panel Admin' , cadmin.login_path %>
             <% end %>
           <% end %>
         </div>
@@ -46,7 +47,7 @@
                 </div>
               </div>
             <%else%>
-              <%= link_to image_tag('icons/ico-login.svg', class: 'icon is-medium'), cadmin.login_path %>
+              <%= link_to image_tag('icons/ico-login.svg', class: 'icon is-medium'), login_path %>
             <% end %> 
           </div>
         </div>

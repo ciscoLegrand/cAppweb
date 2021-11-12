@@ -46,7 +46,11 @@ end
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+platform :mswin, :mingw, :x64_mingw do
+  gem "tzinfo-data"
+  gem "win32_api"
+end
 # Use Active Storage variant
 gem 'image_processing', "~> 1.8" #'~> 1.2'
 #webscrapping
