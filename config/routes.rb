@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   #   get '/users/sign_out'   => 'devise/sessions#destroy'
   # end
 
-
+  mount Cadmin::Engine => '/cadmin'
 
 
 end

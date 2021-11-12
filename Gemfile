@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -68,7 +68,7 @@ gem "breadcrumbs_on_rails"
 gem "view_component",require: "view_component/engine"
 gem 'acts_as_list'
 
-
+gem 'cadmin', git: 'https://github.com/ciscoLegrand/cAdmin.git'
 
 
 
