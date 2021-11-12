@@ -330,9 +330,16 @@ ActiveRecord::Schema.define(version: 2021_11_12_133027) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "title"
-    t.string "email"
-    t.text "body"
+    t.string "name", null: false
+    t.string "restaurant_name"
+    t.integer "phone"
+    t.string "email", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.text "service_name"
+    t.text "additional_services"
+    t.text "observations_info", null: false
+    t.date "date_event"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

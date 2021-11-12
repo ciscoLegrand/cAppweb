@@ -114,6 +114,14 @@
           </li>
         <% end %>
         <li>
+          <%= link_to cadmin.dashboard_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'cadmin', action: 'click->menu#set_active_menu_item'}  do %>
+            <span class="panel-icon ">
+              <%= inline_svg_tag('icons/ico-edit.svg', class: 'icon  has-text-info')%>
+            </span>        
+            <span class="name">Admin. eventos</span>
+          <% end %>
+        </li>
+        <li>
           <% if user_signed_in? %>
             <%= link_to logout_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'logout', action: 'click->menu#set_active_menu_item'}  do %>
               <span class="panel-icon ">

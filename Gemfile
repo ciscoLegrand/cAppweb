@@ -49,7 +49,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 platform :mswin, :mingw, :x64_mingw do
   gem "tzinfo-data"
-  gem "win32_api"
+  # gem "win32_api"
 end
 # Use Active Storage variant
 gem 'image_processing', "~> 1.8" #'~> 1.2'
@@ -72,7 +72,7 @@ gem "breadcrumbs_on_rails"
 gem "view_component",require: "view_component/engine"
 gem 'acts_as_list'
 
-gem 'cadmin', git: 'https://github.com/ciscoLegrand/cAdmin.git'
+gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git'
 
 
 
