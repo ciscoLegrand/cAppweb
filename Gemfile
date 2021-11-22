@@ -72,7 +72,7 @@ gem "breadcrumbs_on_rails"
 gem "view_component",require: "view_component/engine"
 gem 'acts_as_list'
 
-gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git'
+gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git', branch: 'master'
 
 
 
