@@ -1,5 +1,5 @@
 class OpinionsController < ApplicationController
-  load_and_authorize_resource
+  
   before_action :set_opinion, only: %i[ show edit update destroy ]
 
   # GET /opinions or /opinions.json

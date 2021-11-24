@@ -94,16 +94,7 @@
             <span class="name">Usuarios</span>
           <% end %>
         </li>
-        <% if current_user.is_superadmin? %>
-          <% if 1 == 0 %>
-          DEVISE INVITABLE!!!
-          <li>
-            <div class="panel-block is-justify-content-space-between">
-              <%= link_to 'Invitar usuario', new_user_invitation_path,  class: 'has-text-white is-size-6' %>
-              <%= inline_svg_tag('icons/ico-users.svg', class: 'icon  has-text-info') %>
-            </div>
-          </li>
-          <% end %>
+        <% if current_cadmin_user.superadmin? %>
           <li>
             <%= link_to web_configs_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'conf', action: 'click->menu#set_active_menu_item'}  do %>
               <span class="panel-icon ">
@@ -134,21 +125,24 @@
       </ul>
     </nav>
     <!--cuenta/cerrar sesion-->
+    <span class="has-text-centered has-text-white-ter" data-decrease-target="hidetext"><%= current_cadmin_user.username %> || <%= current_cadmin_user.role%></span>
     <div data-controller="dropdown" class="dropdown is-up is-justify-content-center p-3">
       <div class="dropdown-trigger">
-        <button class="button has-text-white is-fullwidth sidebar__button_user" aria-haspopup="true" aria-controls="dropdown-menu7" data-action="click->dropdown#show_options">
-          <span class="sidebar__letter_user"><%= current_user.email[0] %></span> <span><%= current_user.email %></span>
-          <span class="icon is-small">
-            <i class="fas fa-angle-up" aria-hidden="true"></i>
-          </span>
+        <button class="button has-text-white is-fullwidth sidebar__button_user p-5 has-text-dark" aria-haspopup="true" aria-controls="dropdown-menu" data-action="click->dropdown#show_options">
+          <% if current_cadmin_user.avatar_data.present? %>
+            <figure class=" image mr-3"><%= image_tag current_cadmin_user.avatar_url, class:'is-rounded sidebar__avatar'  %></figure>
+          <% else %>
+            <span class="sidebar__letter_user "><%= current_cadmin_user.email[0] %></span> 
+          <% end %>
+          <span class="has-text-dark" data-decrease-target="hidetext"><%= current_cadmin_user.email %></span>
         </button>
       </div>
-      <div class="dropdown-menu pr-3" data-dropdown-target="button" id="dropdown-menu7" role="menu">
+      <div class="dropdown-menu pr-3" data-dropdown-target="button" id="dropdown-menu" role="menu">
         <div class="dropdown-content is-pulled-right">
           <div class="dropdown-item">
             <div class="dropdown-content">
-              <%= button_to "Cerrar Sesión", logout_path, method: :delete, class: "dropdown-item", data: {turbo: false} %>
-              <%= link_to "Mi Cuenta",  edit_user_registration_path(current_user), class: "dropdown-item has-text-centered p-0" %>                      
+              <%= button_to "Cerrar Sesión", cadmin.logout_path, method: :get, class: "dropdown-item has-text-dark", data: {turbo: false} %>
+              <%= link_to "Mi Cuenta", cadmin.profile_index_path, class: "dropdown-item has-text-centered has-text-dark  p-0" %>                      
             </div>
           </div>
         </div>

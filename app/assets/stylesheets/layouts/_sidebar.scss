@@ -96,17 +96,17 @@
     width: 100%;
   }
   &__close {
-    background: $link;
+    background: $info;
     border-radius: 0;
     position: absolute;
-    right: -20px;
     display: none;
     right: -35px;
     min-width: 35px;
     min-height: 35px;
-
+    
     @include touch {
       display: block;
+      bottom: 51px!important;
     }
   }
 }

@@ -1,5 +1,5 @@
 class TodoListsController < ApplicationController
-  load_and_authorize_resource
+  
   before_action :set_todo_list, only: %i[ show edit update destroy ]
 
   # GET /todo_lists or /todo_lists.json

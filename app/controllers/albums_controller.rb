@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  load_and_authorize_resource
+  
   before_action :set_album, only: %i[ show edit update destroy ]
   
   # GET /albums or /albums.json

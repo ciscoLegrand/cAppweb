@@ -1,5 +1,5 @@
 class HomeBannersController < ApplicationController
-  load_and_authorize_resource
+  
   before_action :set_home_banner, only: %i[ show edit update destroy ]
 
   # GET /home_banners or /home_banners.json
