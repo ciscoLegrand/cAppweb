@@ -64,8 +64,8 @@ gem 'bulma-rails'
 gem 'turbo-rails'  
 gem 'pagy'
 gem 'pg_search'
-# gem "action_policy"
-gem 'cancancan', '~> 3.2', '>= 3.2.1'
+
+
 gem 'stimulus-rails'
 gem 'inline_svg'
 gem "breadcrumbs_on_rails"
