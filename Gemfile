@@ -69,7 +69,7 @@ gem 'pg_search'
 gem 'stimulus-rails'
 gem 'inline_svg'
 gem "breadcrumbs_on_rails"
-gem "view_component",require: "view_component/engine"
+gem "view_component"
 gem 'acts_as_list'
 gem "rack-cors"
 gem "rspotify"
