@@ -47,7 +47,7 @@
                       <%= form.label 'Cabinas', class:'label is-size-4 has-text-weight-light' %>
                       <div class="control is-expanded">
                         <div class="select is-fullwidth">
-                          <%= form.collection_select(:service_name, ServiceItem.where(service_id: 1 ).all, :name, :name, prompt:'Cabinas') %>
+                          <%= form.collection_select(:service_name, @cabinas, :name, :name, prompt:'Cabinas') %>
                         </div>
                       </div>
                     </div>
@@ -69,7 +69,7 @@
                       <%= form.label 'Más Servicios', class:'label is-size-4 has-text-weight-light' %>
                       <div class="control is-expanded">
                         <div class="select is-fullwidth">
-                          <%= form.collection_select(:additional_services, Service.all, :name, :name, prompt:'Otros Servicios') %>
+                          <%= form.collection_select(:additional_services, @main_services, :name, :name, prompt:'Otros Servicios') %>
                         </div>
                       </div>
                     </div>

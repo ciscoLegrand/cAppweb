@@ -1,8 +1,8 @@
 module TextEffects
-  extended ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
   def parallax
-    self.parallax? ? 'Avtivado' : 'desactivado'
+    self.parallax? ? 'Activado' : 'desactivado'
   end
 
   def visible 

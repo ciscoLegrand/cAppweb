@@ -14,11 +14,11 @@ class OpinionsSpider < Kimurai::Base
       item = {}
 
       # item[:title]      = opinion.css('p.storefrontReview__title')&.text&.squish
-      item[:title]      = opinion.css('p.storefrontReview__title')&.text&.squish
-      item[:body]      = opinion.css('p.storefrontReview__description')&.text&.squish
-      item[:ratingStar] = opinion.css('span.mr5')&.text&.squish
-      item[:name]      = opinion.css('p.storefrontReview__name')&.text&.squish
-      item[:wedding_date] = opinion.css('small.storefrontItemReview__date')[0]&.text&.squish
+      item[:title]          = opinion.css('p.storefrontReview__title')&.text&.squish
+      item[:body]           = opinion.css('p.storefrontReview__description')&.text&.squish
+      item[:ratingStar]     = opinion.css('span.mr5')&.text&.squish
+      item[:name]           = opinion.css('p.storefrontReview__name')&.text&.squish
+      item[:wedding_date]   = opinion.css('small.storefrontItemReview__date')[0]&.text&.squish
       
       Opinion.where(item).first_or_create
     end

@@ -13,10 +13,11 @@
         <div class="navbar-start is-centered">          
           <%= link_to 'Inicio', root_path, class: "navbar-item is-size-5" %>          
           <%#= link_to 'Quienes Somos', sobre_nosotros_path , class: "navbar-item is-size-5" %>
-          <% @services.order(name: 'asc').each do |service| %>
-            <%= link_to service.name, servicio_path(service), class: "navbar-item is-size-5" %> 
+
+          <% @main_services.each do |service| %>
+            <%= link_to service.name, main_service_path(service), class: "navbar-item is-size-5" %> 
           <% end %>
-                      
+
           <%= link_to 'Galerias', galerias_path, class: "navbar-item is-size-5" %>    
           <%= link_to 'Contacto', contacto_path, class: "navbar-item is-size-5" %>
           <% if cadmin_user_signed_in? %>
@@ -35,18 +36,19 @@
             <%= render(SocialLinkComponent.new(href: WebConfig.first.url_twitter, name: 'tiwtter',ico: 'ico-twitter.svg'))%>
             <%= render(SocialLinkComponent.new(href: WebConfig.first.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))%>
             <%= render(SocialLinkComponent.new(href: WebConfig.first.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))%>
-            <% if current_user %>
+            <% if cadmin_user_signed_in? %>
               <div class="control">
                 <div class="tags has-addons">
-                  <span class="tag is-dark is-large"><%= current_cadmin_user.name%></span>
-                  <% if current_user.role == 'admin' || current_user.role == 'superadmin' %>
-                    <span class="tag is-success is-large"><%= current_cadmin_user.role%><%= link_to "",  logout_path, method: :delete, class: 'delete' %></span>
-                  <% else %>
-                    <span class="tag is-success is-large"><%= current_cadmin_user.last_name%><%= link_to "", logout_path, method: :delete, class: 'delete' %></span>
-                  <% end %>
+                  <span class="tag is-dark is-large"><%= current_cadmin_user.name %></span>
+                  <span class="tag is-success is-large"><%= link_to "",  logout_path, method: :delete, class: 'delete' %></span>
                 </div>
               </div>
+              <div class="is-flex is-justify-content">
+                <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.cart_path, class:'is-clickable has-text-primary'%>
+                <div class="tag is-rounded is-primary"><%= Cadmin::Cart.find(session[:cart_id]).cart_items.count %></div>
+              </div>
             <%else%>
+              <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.login_path, class:'is-clickable has-text-primary'%>
               <%= link_to image_tag('icons/ico-login.svg', class: 'icon is-medium'), cadmin.login_path %>
             <% end %> 
           </div>

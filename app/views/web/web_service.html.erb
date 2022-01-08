@@ -1,33 +1,31 @@
 
 
 
-<div class="container is-max-width  py-3 ">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @service_objects.order('created_at DESC').each do |service| %>
-        <div class="column <%= @service_objects.length > 1 ? 'is-6' : 'is-12'%>">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                  <% if service.images.first.present? %>
-                    <%= image_tag(url_for(service.images.first)) %>
-                  <% else %>
-                  <% end %>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4"><%=  "#{service.name}" %></p>
-                  <p class="subtitle is-6"><%= service.description %></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+<div class="container is-max-width  py-3 ">  
+  <div class="columns is-multiline">
+    <div class="column is-8">
+      <!--TODO: main image-->
+      <%= image_tag @service.image_url if @service.image %>
+      <!--TODO: slider small images-->
     </div>
-  </div>
+    <div class="column is-4 is-flex-direction-column">
+      <p class="title is-4"><%=  "#{@service.name}" %></p>
+      <p class="subtitle is-6"><%= @service.short_dscription %></p>
+      <div class="is-flex is-justify-content-space-between">
+        <span class="tag is-link is-size-5 has-text-weight-medium "><%= number_to_currency @service.price %></span>
+        <%= link_to "Booking", cadmin.add_to_cart_path(service_id: @service.id), class: 'button is-info' if current_cadmin_user.present? %>
+        <%= link_to "Booking", cadmin.login_path, class: 'button is-info' unless current_cadmin_user.present? %>
+      </div>
+      <hr>
+      <div><%= raw @service.features %></div>
+    </div>
+    <div class="column is-12">
+      <h3 class="title is-3 has-text-centered">Related Products</h3>
+      <div class="columns is-multiline">
+          <!--TODO: slider related products -->
+      </div>
+    </div>
+  </div>    
 </div>
 
 

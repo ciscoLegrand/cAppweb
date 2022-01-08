@@ -89,8 +89,10 @@ Cadmin::Location.create(name: 'Pazo Torrexunqueira', address:'', province: 'A Co
 Cadmin::Location.create(name: 'Pazo de Adran', address:'', province: 'A Coruña', coords: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1498939.4986847232!2d-9.138688094933547!3d42.7964627560893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f021b39d486d3%3A0xecb479c5f0974632!2sPazo%20de%20Adr%C3%A1n!5e0!3m2!1ses!2ses!4v1633541675159!5m2!1ses!2ses')
 
 Cadmin::MainService.create(name: 'Cabinas', description: 'Nuestras cabinas')
-Cadmin::MainService.create(name: 'Jbx', description: 'Nuestras luces')
 Cadmin::MainService.create(name: 'Picmaton', description: 'Nuestros fotomatones')
+Cadmin::MainService.create(name: 'Neones', description: 'Nuestros neones')
+Cadmin::MainService.create(name: 'Animación', description: 'Animación infantil')
+Cadmin::MainService.create(name: 'Jbx', description: 'Nuestras luces')
 
 Cadmin::Service.create(name: 'Gramola', price: 550.00, hour_price: 90.00, main_service_id: 1)
 Cadmin::Service.create(name: 'Moon', price: 650.00,hour_price: 90.00, main_service_id: 1)
@@ -98,7 +100,12 @@ Cadmin::Service.create(name: 'Carro vintage', price: 750.00, hour_price: 90.00, 
 Cadmin::Service.create(name: 'VWT1', price: 850.00, hour_price: 90.00, main_service_id: 1)
 Cadmin::Service.create(name: 'Piano', price: 950.00,hour_price: 90.00, main_service_id: 1)
 Cadmin::Service.create(name: 'Picmaton', price: 450.00,hour_price: 50.00, main_service_id: 2)
-Cadmin::Service.create(name: 'Iluminacion base', price: 1450.00, main_service_id: 3)
+Cadmin::Service.create(name: 'Galifornia', price: 150.00,hour_price: 0.00, main_service_id: 3)
+Cadmin::Service.create(name: 'Hakuna Matata', price: 150.00,hour_price: 0.00, main_service_id: 3)
+Cadmin::Service.create(name: 'Eres un sol', price: 150.00,hour_price: 0.00, main_service_id: 3)
+Cadmin::Service.create(name: 'Beautiful place', price: 150.00,hour_price: 0.00, main_service_id: 3)
+Cadmin::Service.create(name: 'Monitores', price: 300.00,hour_price: 30.00, main_service_id: 4)
+Cadmin::Service.create(name: 'Iluminacion base', price: 1450.00, main_service_id: 5)
 
 services = Cadmin::Service.all 
 services.each do |service| 

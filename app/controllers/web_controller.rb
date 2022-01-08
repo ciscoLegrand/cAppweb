@@ -1,4 +1,7 @@
 class WebController < ApplicationController
+  before_action :set_main_service, only: %w[web_services web_service ]
+  before_action :set_service, only: %w[web_service]
+
   def web_home
     @home = true
     @banner_uno = HomeBanner.first
@@ -17,13 +20,12 @@ class WebController < ApplicationController
 
 
   def web_services
-    add_breadcrumb 'Servicios', servicios_path
-    @services = Service.all
+    add_breadcrumb @main_service.name, main_service_path(@main_service)
+    @services = Cadmin::MainService.friendly.find(params[:main_service_id]).services.friendly.where(params[:service_id])
+    @cart = Cadmin::Cart.find(session[:cart_id]).id if current_cadmin_user.present?
   end
 
   def web_service
-    @service = Service.find(params[:service_id])
-    @service_objects = ServiceObject.where(service_id: @service).all
     add_breadcrumb @service.name, servicio_path
   end
 
@@ -72,5 +74,15 @@ class WebController < ApplicationController
   def web_contact
     add_breadcrumb 'Contacto', contacto_path
     @contact = Contact.new
+    @cabinas = Cadmin::Service.where(main_service_id: 1)
+    @main_services = Cadmin::MainService.where.not(id: 1)
   end
+
+  private 
+    def set_main_service 
+      @main_service =  Cadmin::MainService.friendly.find(params[:main_service_id])
+    end 
+    def set_service 
+      @service = Cadmin::Service.friendly.find(params[:service_id])
+    end 
 end

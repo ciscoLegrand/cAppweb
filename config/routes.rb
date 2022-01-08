@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   constraints(host: 'picmaton.com') do
     get '(*)', to: redirect(host: 'lagramoladisco.com/galerias')
   end
 
-  resources :service_objects
-  resources :web_configs
   root 'web#web_home'
-  
-  resources :contacts, only: [:create, :new]
 
+  resources :web_configs
+  
   resources :albums do
     resources :galleries
   end
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
   resources :opinions do
     match '/scrape', to: 'opinions#scrape', via: :post, on: :collection
   end
-
+  
   resources :todo_lists do
     resources :todo_items
   end
@@ -24,7 +23,7 @@ Rails.application.routes.draw do
   resources :services do 
     resources :service_items
   end
-
+  
   resources :service_items do
     collection do
       patch :sort
@@ -38,20 +37,22 @@ Rails.application.routes.draw do
   resources :home_banners
   resources :photos
   resources :quotes
+  resources :service_objects
  
-  match 'sobre-nosotros', to: 'web#web_about_us', via: :get
-  match 'galerias', to: 'web#web_albums', via: :get
-  match 'contacto', to: 'web#web_contact',via: :get
-  match 'resultados', to: 'web#web_search_results', via: :get
-  match 'servicios', to: 'web#web_services', via: :get
-  match 'politica-de-cookies', to: 'web#web_aviso_cookies', as: 'cookies', via: :get
-  match 'aviso-legal', to: 'web#web_aviso_legal', as: 'legal', via: :get
-  match 'politica-de-privacidad', to: 'web#web_aviso_privacidad', as: 'privacidad', via: :get
-  match 'usuarios', to: 'users#index', via: :get
-  match 'email-contacto', to: "contacts#index", via: :get
-  get '/galeria/:album_id', to: 'web#web_album', as: 'galeria'
-  get '/servicios/:service_id', to: 'web#web_service', as: 'servicio'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # custom routes for web public client access
+  match 'servicios/:main_service_id',                       to: 'web#web_services',             via: :get, as: :main_service
+  match 'servicios/:main_service_id/:service_id',           to: 'web#web_service',              via: :get, as: :servicio
+  match 'sobre-nosotros',                                   to: 'web#web_about_us',             via: :get
+  match 'galerias',                                         to: 'web#web_albums',               via: :get
+  match 'contacto',                                         to: 'web#web_contact',              via: :get
+  match 'resultados',                                       to: 'web#web_search_results',       via: :get
+  match 'politica-de-cookies',                              to: 'web#web_aviso_cookies',        via: :get, as: 'cookies'
+  match 'aviso-legal',                                      to: 'web#web_aviso_legal',          via: :get, as: 'legal'
+  match 'politica-de-privacidad',                           to: 'web#web_aviso_privacidad',     via: :get, as: 'privacidad'
+  match 'usuarios',                                         to: 'users#index',                  via: :get
+  match 'email-contacto',                                   to: "contacts#index",               via: :get
+  get '/galeria/:album_id',                                 to: 'web#web_album',                           as: 'galeria'
+  
 
   devise_for :users, :controllers => { 
     sessions: 'users/sessions',
