@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_213647) do
+ActiveRecord::Schema.define(version: 2022_01_03_182420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.string "title", null: false
     t.text "content", null: false
     t.integer "status", default: 0, null: false
-    t.date "published_at", default: "2021-12-21", null: false
+    t.date "published_at", default: "2022-01-07", null: false
     t.date "unpublished_at"
     t.string "metatitle"
     t.string "metadata"
@@ -104,10 +104,28 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.bigint "user_id", null: false
     t.bigint "article_category_id", null: false
     t.text "tag_ids"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_category_id"], name: "index_cadmin_articles_on_article_category_id"
+    t.index ["slug"], name: "index_cadmin_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_cadmin_articles_on_user_id"
+  end
+
+  create_table "cadmin_cart_items", force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_cadmin_cart_items_on_cart_id"
+    t.index ["service_id"], name: "index_cadmin_cart_items_on_service_id"
+  end
+
+  create_table "cadmin_carts", force: :cascade do |t|
+    t.string "ip"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cadmin_comments", force: :cascade do |t|
@@ -137,16 +155,20 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.date "start_date"
     t.date "end_date"
     t.text "observations"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_cadmin_discounts_on_slug", unique: true
   end
 
   create_table "cadmin_email_base_templates", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
     t.integer "kind", null: false
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_cadmin_email_base_templates_on_slug", unique: true
   end
 
   create_table "cadmin_email_custom_templates", force: :cascade do |t|
@@ -195,8 +217,10 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.boolean "charged", default: false, null: false
     t.boolean "employee_paid", default: false, null: false
     t.text "observations"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_cadmin_events_on_slug", unique: true
   end
 
   create_table "cadmin_interview_options", force: :cascade do |t|
@@ -234,16 +258,20 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.integer "postal_code"
     t.string "province"
     t.text "coords"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_cadmin_locations_on_slug", unique: true
   end
 
   create_table "cadmin_main_services", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "position"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_cadmin_main_services_on_slug", unique: true
   end
 
   create_table "cadmin_messages", force: :cascade do |t|
@@ -271,9 +299,11 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.text "metadescription"
     t.text "image_data"
     t.bigint "main_service_id", null: false
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["main_service_id"], name: "index_cadmin_services_on_main_service_id"
+    t.index ["slug"], name: "index_cadmin_services_on_slug", unique: true
   end
 
   create_table "cadmin_taggings", force: :cascade do |t|
@@ -289,6 +319,18 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cadmin_tracks", force: :cascade do |t|
+    t.string "name"
+    t.string "artist"
+    t.string "image"
+    t.string "preview"
+    t.string "spotify_id"
+    t.string "slug"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_cadmin_tracks_on_slug", unique: true
   end
 
   create_table "cadmin_users", force: :cascade do |t|
@@ -308,6 +350,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.datetime "deleted_at"
     t.string "role", default: "user", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "slug"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -337,6 +380,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.index ["invited_by_type", "invited_by_id"], name: "index_cadmin_users_on_invited_by"
     t.index ["phone"], name: "index_cadmin_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_cadmin_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_cadmin_users_on_slug", unique: true
     t.index ["username"], name: "index_cadmin_users_on_username", unique: true
   end
 
@@ -369,6 +413,17 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
     t.date "date_event"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "galleries", force: :cascade do |t|
@@ -522,6 +577,8 @@ ActiveRecord::Schema.define(version: 2021_12_16_213647) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cadmin_articles", "cadmin_article_categories", column: "article_category_id"
   add_foreign_key "cadmin_articles", "cadmin_users", column: "user_id"
+  add_foreign_key "cadmin_cart_items", "cadmin_carts", column: "cart_id"
+  add_foreign_key "cadmin_cart_items", "cadmin_services", column: "service_id"
   add_foreign_key "cadmin_comments", "cadmin_articles", column: "article_id"
   add_foreign_key "cadmin_comments", "cadmin_users", column: "user_id"
   add_foreign_key "cadmin_email_custom_templates", "cadmin_email_base_templates", column: "email_base_template_id"
