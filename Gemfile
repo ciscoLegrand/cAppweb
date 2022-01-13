@@ -75,8 +75,8 @@ gem "rack-cors"
 gem "rspotify"
 gem "active_model_serializers"
 gem "rspec-rails"
-gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git', branch: 'master'
-#  gem 'cadmin', path: '../engine/cadmin'
+gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git', branch: 'checkout'
+#  gem 'cadmin', path: '../cadmin'
 
 
 

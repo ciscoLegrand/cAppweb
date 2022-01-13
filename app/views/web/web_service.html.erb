@@ -16,7 +16,7 @@
         <%= link_to "Booking", cadmin.add_to_cart_path(service_id: @service.id), class: 'button is-info' if current_cadmin_user.present? %>
         <%= link_to "Booking", cadmin.login_path, class: 'button is-info' unless current_cadmin_user.present? %>
         
-        <%= button_to "Buy now!", cadmin.checkout_create_path, params: {id: @service.id}, remote: true, turbo: false%>
+        <%= button_to "Buy now!", cadmin.checkout_create_path, params: {id: @service.id}, data: {target:'_top', turbo: false}%>
       </div>
       <hr>
       <div><%= raw @service.features %></div>

@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
     t.string "title", null: false
     t.text "content", null: false
     t.integer "status", default: 0, null: false
-    t.date "published_at", default: "2022-01-07", null: false
+    t.date "published_at", default: "2022-01-13", null: false
     t.date "unpublished_at"
     t.string "metatitle"
     t.string "metadata"
@@ -351,6 +351,9 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
     t.string "role", default: "user", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "slug"
+    t.integer "customer_id"
+    t.integer "subscription_id"
+    t.integer "price_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
