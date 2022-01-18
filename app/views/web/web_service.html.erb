@@ -1,34 +1,48 @@
-
-
-
-<div class="container is-max-width  py-3 ">  
-  <div class="columns is-multiline">
-    <div class="column is-8">
-      <!--TODO: main image-->
-      <%= image_tag @service.image_url if @service.image %>
-      <!--TODO: slider small images-->
+<!-- slider images -->
+<section class="section  service pt-1">
+  <h1 class="title is-size-1-desktop has-text-centered is-fullwidth"><%= @service.name  %></h1>
+  <div class="columns is-multiline is-mobile px-3 is-align-content-space-around">
+    <div class="column is-7-desktop is-12-touch">
+      <figure class="image is-5by3">
+        <%= image_tag @service.image_url if @service.image %>
+      </figure>
+      <div class="mt-5">TODO: Slider de imagenes</div>
+      <hr class="has-background-white-ter">
     </div>
-    <div class="column is-4 is-flex-direction-column">
-      <p class="title is-4"><%=  "#{@service.name}" %></p>
-      <p class="subtitle is-6"><%= @service.short_dscription %></p>
-      <div class="is-flex is-justify-content-space-between">
-        <span class="tag is-link is-size-5 has-text-weight-medium "><%= number_to_currency @service.price %></span>
-        <%= link_to "Booking", cadmin.add_to_cart_path(service_id: @service.id), class: 'button is-info' if current_cadmin_user.present? %>
-        <%= link_to "Booking", cadmin.login_path, class: 'button is-info' unless current_cadmin_user.present? %>
-        
-        <%= button_to "Buy now!", cadmin.checkout_create_path, params: {id: @service.id}, data: {target:'_top', turbo: false}%>
+    <div class="column is-4-desktop is-12-touch">
+      <div class="mb-3">
+        <%= @service.short_dscription %>
       </div>
-      <hr>
-      <div><%= raw @service.features %></div>
-    </div>
-    <div class="column is-12">
-      <h3 class="title is-3 has-text-centered">Related Products</h3>
-      <div class="columns is-multiline">
-          <!--TODO: slider related products -->
+      <div class="is-size-5-desktop is-size-6-touch my-3">
+        <%= number_to_currency @service.price %>
+      </div>
+      <div class="is-flex is-justify-content-space-between my-4">
+      <%= link_to 'Add!', cadmin.add_to_cart_path(@service), class: 'button is-info  is-flex-grow-1 mr-2 is-fullwidth' %>
+      <!--TODO: move button to event form finish payment -->  
+      <%= link_to 'Buy Stripe!', cadmin.checkout_create_path(id: @service.id), method: :post, remote: true, data: {controller: 'stripe' }, class:'button is-link is-flex is-flex-grow-1 ml-2 is-fullwidth' %> 
+      </div>
+
+      <div class="service__content">
+        <h4 class="subtitle is-size-4-destop is-size-5-touch mb-2">TODO: description</h4>
+        <%= @service.description %>
+      </div>
+      <hr class="has-background-white-ter">
+      <div data-controller="dropdown" class="dropdown is-down is-flex-direction-column is-justify-content-center p-3 is-fullwidth" >         
+        <h4 class="subtitle is-size-4-desktop is-size-5-touch">
+          <div class="is-clickable is-flex is-justify-content-space-between is-flex-grow-1" 
+              aria-haspopup="true" 
+              aria-controls="dropdown-features" 
+              data-action="click->dropdown#display_product_features">
+              Características: <%= inline_svg_tag('cadmin/icons/ico-chevron-down.svg', class: 'icon is-medium') %>
+          </div>
+        </h4>
+        <div data-dropdown-target="productfeatures" class="is-down is-justify-content-center is-hidden">          
+          <%= raw @service.features %>          
+        </div>
       </div>
     </div>
-  </div>    
-</div>
+  </div>
+</section>
 
 
-    
+

@@ -1,9 +1,7 @@
-GIT
-  remote: git@github.com:ciscoLegrand/cAdmin.git
-  revision: 8dbecfd3937d5e03f00dc0df8b4b6bb69d5f842e
-  branch: checkout
+PATH
+  remote: ../cAdmin
   specs:
-    cadmin (0.1.2)
+    cadmin (0.1.3)
       aasm
       active_model_serializers
       breadcrumbs_on_rails

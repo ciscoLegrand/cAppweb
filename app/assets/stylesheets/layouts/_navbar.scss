@@ -11,5 +11,10 @@
     top:15%;
     right: 0;
   }
-  
+  .navbar-menu{
+    position: absolute;
+    width: 100%;
+    top: 4rem;
+    transition-delay: 0.5s
+  }
 }
