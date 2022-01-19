@@ -12,8 +12,8 @@ Cadmin::User.create(name: 'paco', username: 'paquito', email: 'customer3@test.co
 Cadmin::User.create(name: 'tilin', username: 'vamostilino', email: 'customer4@test.com',phone: '+34625650294', password: 'test123', role: 'customer')
 Cadmin::User.create(name: 'thor', username: 'thor', email: 'customer5@test.com',phone: '+34625650295', password: 'test123', role: 'customer')
 Cadmin::User.create(name: 'tony', username: 'tonystark', email: 'customer6@test.com',phone: '+34625650296', password: 'test123', role: 'customer')
-Cadmin::User.create(name: 'cisco', username: 'cisco', email: 'cisco.glez@gmail.com',phone: '+34625350192', password: 'test123', role: 'employee')
-Cadmin::User.create(name: 'franchy', username: 'franchyto', email: 'employee2@test.com',phone: '+34625651292', password: 'test123', role: 'employee')
+Cadmin::User.create(name: 'cisco', username: 'cisco', email: 'cisco.glez@gmail.com',phone: '+34625350192', password: 'test123', role: 'superadmin')
+Cadmin::User.create(name: 'franchy', username: 'franchyto', email: 'employee1@test.com',phone: '+34625651292', password: 'test123', role: 'employee')
 count = 0
 names = [
   "Aaran", "Aaren", "Aarez", "Aarman", "Aaron", "Aaron-James", "Aarron", "Aaryan", "Aaryn", "Aayan", "Aazaan", "Abaan", "Abbas", "Abdallah", "Abdalroof", "Abdihakim", "Abdirahman", "Abdisalam", 
@@ -215,7 +215,7 @@ WebConfig.create(
   public_key_recaptcha:''
 )
 
-HomeBanner.create(title: 'cApp', body:'Praesent vitae eros at ex maximus aliquet eu ac nisi. Aliquam erat volutpat. Donec sollicitudin eget justo eu tristique. Sed a felis ac ligula aliquet pellentesque. In vel fermentum magna, eget consequat arcu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer vitae rutrum tellus, a mollis lacus. Proin dignissim massa nisi, sit amet eleifend ante viverra id. Aliquam erat volutpat. Curabitur vel orci dui. Pellentesque et felis a ex pharetra vehicula. Phasellus fringilla consectetur imperdiet. Nulla accumsan nunc id tortor volutpat mattis. Donec est sem, ultrices eget finibus in, feugiat id ex. Maecenas tristique sem vel nunc fringilla, quis pretium magna auctor.')
+HomeBanner.create(title: 'cApp', body:'Praesent vitae eros at ex maximus aliquet eu ac nisi. Aliquam erat volutpat.')
 
 
 puts Cadmin::Service.last.name
