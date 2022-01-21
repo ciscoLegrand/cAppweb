@@ -15,8 +15,8 @@
 # gem 'pg'
 #
 default: &default
-  username: <%= Rails.application.credentials.dig(:development, :username) %>
-  password: <%= Rails.application.credentials.dig(:development, :password) %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide

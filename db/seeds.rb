@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Cadmin::User.create(name: 'cisco', username: 'admin', email: 'creadix@creadix.es',phone: '+34625650792', password: 'test123', role: 'superadmin')
+Cadmin::User.create(name: 'creadix', username: 'admin', email: 'creadix@creadix.es',phone: '+34625650792', password: 'test123', role: 'superadmin')
 Cadmin::User.create(name: 'yona', username: 'yonidrama', email: 'customer1@test.com',phone: '+34625650392', password: 'test123', role: 'customer')
 Cadmin::User.create(name: 'pepe', username: 'pepito', email: 'customer2@test.com',phone: '+34625650192', password: 'test123', role: 'customer')
 Cadmin::User.create(name: 'paco', username: 'paquito', email: 'customer3@test.com',phone: '+34625650293', password: 'test123', role: 'customer')
@@ -14,6 +14,9 @@ Cadmin::User.create(name: 'thor', username: 'thor', email: 'customer5@test.com',
 Cadmin::User.create(name: 'tony', username: 'tonystark', email: 'customer6@test.com',phone: '+34625650296', password: 'test123', role: 'customer')
 Cadmin::User.create(name: 'cisco', username: 'cisco', email: 'cisco.glez@gmail.com',phone: '+34625350192', password: 'test123', role: 'superadmin')
 Cadmin::User.create(name: 'franchy', username: 'franchyto', email: 'employee1@test.com',phone: '+34625651292', password: 'test123', role: 'employee')
+Cadmin::User.create(name: 'cisco', username: 'admin', email: 'creadix@creadix.es',phone: '+34625223792', password: 'test123', role: 'employee')
+Cadmin::User.create(name: 'cisco', username: 'admin', email: 'creadix@creadix.es',phone: '+34225650792', password: 'test123', role: 'employee')
+Cadmin::User.create(name: 'administrador', username: 'administrador', email: 'admin@test.com',phone: '+34725650792', password: 'test123', role: 'admin')
 count = 0
 names = [
   "Aaran", "Aaren", "Aarez", "Aarman", "Aaron", "Aaron-James", "Aarron", "Aaryan", "Aaryn", "Aayan", "Aazaan", "Abaan", "Abbas", "Abdallah", "Abdalroof", "Abdihakim", "Abdirahman", "Abdisalam", 
@@ -132,18 +135,18 @@ def createtimestamps
   str.strftime('%y%m%d%H%M')
 end
 
-Cadmin::Event.create(title: 'Marcos y Carolina',customer_id: 3,employee_id: 1,number:"LGMD/00003-#{createtimestamps}", type_name:'boda', date: '10/08/2022', guests: 100, place_id: 1, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Eva y Juan',customer_id: 4,employee_id: 1,number:"LGMD/00004-#{createtimestamps}", type_name:'boda',  date: '11/06/2022', guests: 146,  place_id: 1, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Alicia y Bea',customer_id: 2,employee_id: 1,number:"LGMD/00002-#{createtimestamps}", type_name:'boda', date: '01/05/2022', guests: 213, place_id: 3, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Bea y Juan',customer_id: 6,employee_id: 1,number:"LGMD/00006-#{createtimestamps}", type_name:'boda', date: '11/05/2022', guests: 111, place_id: 3, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Hector y Ana',customer_id: 7,employee_id: 1,number:"LGMD/00007-#{createtimestamps}", type_name:'boda', date: '21/05/2022', guests: 34, place_id: 3, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Isabel y Pedro',customer_id: 5,employee_id: 1,number:"LGMD/00005-#{createtimestamps}", type_name:'boda', date: '11/06/2022', guests: 99, place_id: 3, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Marcos y Carolina',customer_id: 3,employee_id: 10,number:"LGMD/00003-#{createtimestamps}", type_name:'boda', date: '10/08/2022', guests: 100, place_id: 1, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Eva y Juan',customer_id: 4,employee_id: 10,number:"LGMD/00004-#{createtimestamps}", type_name:'boda',  date: '11/06/2022', guests: 146,  place_id: 1, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Alicia y Bea',customer_id: 2,employee_id: 10,number:"LGMD/00002-#{createtimestamps}", type_name:'boda', date: '01/05/2022', guests: 213, place_id: 3, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Bea y Juan',customer_id: 6,employee_id: 10,number:"LGMD/00006-#{createtimestamps}", type_name:'boda', date: '11/05/2022', guests: 111, place_id: 3, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Hector y Ana',customer_id: 7,employee_id: 10,number:"LGMD/00007-#{createtimestamps}", type_name:'boda', date: '21/05/2022', guests: 34, place_id: 3, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Isabel y Pedro',customer_id: 5,employee_id: 10,number:"LGMD/00005-#{createtimestamps}", type_name:'boda', date: '11/06/2022', guests: 99, place_id: 3, observations: 'evento creado con seeds')
 Cadmin::Event.create(title: 'Maria y Mario',customer_id: 4,number:"LGMD/00004-#{createtimestamps}", type_name:'boda', date: '11/06/2022', guests: 76, place_id: 3, observations: 'evento creado con seeds')
 Cadmin::Event.create(title: 'Lucia y Lucio',customer_id: 3,number:"LGMD/00003-#{createtimestamps}", type_name:'boda', date: '31/07/2022', guests: 257, place_id: 3, observations: 'evento creado con seeds')
 Cadmin::Event.create(title: 'Lore y Pablo',customer_id: 2,number:"LGMD/00002-#{createtimestamps}", type_name:'boda', date: '01/11/2021', guests: 482, place_id: 3, observations: 'evento creado con seeds')
 Cadmin::Event.create(title: 'Paula y Lucas',customer_id: 1,number:"LGMD/00001-#{createtimestamps}", type_name:'boda', date: '31/10/2021', guests: 300, place_id: 3, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Daniela y Dani',customer_id: 4,number:"LGMD/00004-#{createtimestamps}", type_name:'boda', date: '01/03/2022', guests: 213, place_id: 3, observations: 'evento creado con seeds')
-Cadmin::Event.create(title: 'Moncha y Ramon',customer_id: 5,number:"LGMD/00005-#{createtimestamps}", type_name:'boda', date: '11/04/2022', guests: 123, employee_id: 6, place_id: 3, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Daniela y Dani',customer_id: 4,number:"LGMD/00004-#{createtimestamps}", type_name:'boda', date: '01/01/2022', guests: 213, place_id: 3, observations: 'evento creado con seeds')
+Cadmin::Event.create(title: 'Moncha y Ramon',customer_id: 5,number:"LGMD/00005-#{createtimestamps}", type_name:'boda', date: '11/01/2022', guests: 123, employee_id: 6, place_id: 3, observations: 'evento creado con seeds')
 Cadmin::Event.create(title: 'Maria y Jose',customer_id: 6,number:"LGMD/00006-#{createtimestamps}", type_name:'boda', date: '16/08/2022', guests: 111, employee_id: 6, place_id: 3, observations: 'evento creado con seeds')
 Cadmin::Event.create(title: 'Fernanda y Fernando',customer_id: 7,number:"LGMD/00007-#{createtimestamps}", type_name:'boda', date: '01/01/2022', guests: 654, employee_id: 6, place_id: 3, observations: 'evento creado con seeds')
 
@@ -166,11 +169,11 @@ Cadmin::EventService.create(event_id: 13, service_id: 4, overtime: 1)
 Cadmin::EventService.create(event_id: 14, service_id: 4, overtime: 1)
 
 
-Cadmin::Interview.create(event_id: 1, employee_id: 1, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
-Cadmin::Interview.create(event_id: 2, employee_id: 1, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
-Cadmin::Interview.create(event_id: 3, employee_id: 1, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
-Cadmin::Interview.create(event_id: 4, employee_id: 1, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
-Cadmin::Interview.create(event_id: 5, employee_id: 1, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
+Cadmin::Interview.create(event_id: 1, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
+Cadmin::Interview.create(event_id: 2, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
+Cadmin::Interview.create(event_id: 3, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
+Cadmin::Interview.create(event_id: 4, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
+Cadmin::Interview.create(event_id: 5, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
 
 
 Cadmin::ArticleCategory.create(name: 'Web Development')
