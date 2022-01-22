@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:ciscoLegrand/cAdmin.git
-  revision: 558ae8c9bea4af3ac776d18a68486fd147e92052
+  revision: dfea57d2e0717b4eb851ac52a605fe52d2c0874c
   branch: main
   specs:
     cadmin (0.1.3)
@@ -116,7 +116,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.10.1)
+    bootsnap (1.10.2)
       msgpack (~> 1.2)
     breadcrumbs_on_rails (4.1.0)
       railties (>= 5.0)
@@ -252,7 +252,7 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
-    msgpack (1.4.3)
+    msgpack (1.4.4)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -281,7 +281,7 @@ GEM
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
     orm_adapter (0.5.0)
-    pagy (5.9.0)
+    pagy (5.9.1)
       activesupport
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)

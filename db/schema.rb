@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
     t.string "title", null: false
     t.text "content", null: false
     t.integer "status", default: 0, null: false
-    t.date "published_at", default: "2022-01-19", null: false
+    t.date "published_at", default: "2022-01-21", null: false
     t.date "unpublished_at"
     t.string "metatitle"
     t.string "metadata"
@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
   create_table "cadmin_events", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "employee_id"
+    t.integer "cart_id"
     t.string "status", default: "pending", null: false
     t.string "title"
     t.string "type_name", default: "boda", null: false
