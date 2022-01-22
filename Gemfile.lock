@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:ciscoLegrand/cAdmin.git
-  revision: dfea57d2e0717b4eb851ac52a605fe52d2c0874c
+  revision: 3ddc470b35200a06770dfcf0a81a28100abee8ea
   branch: main
   specs:
     cadmin (0.1.3)
