@@ -54,21 +54,21 @@ Rails.application.routes.draw do
   get '/galeria/:album_id',                                 to: 'web#web_album',                           as: 'galeria'
   
 
-  devise_for :users, :controllers => { 
-    sessions: 'users/sessions',
-    registrations: 'users/registrations' 
-  }
+  # devise_for :users, :controllers => { 
+  #   sessions: 'users/sessions',
+  #   registrations: 'users/registrations' 
+  # }
 
-  as :user do
-    get 'users/edit' => 'users/registrations#edit'
-    put 'users/edit' => 'users/registrations#create', :as => 'registrations'
-    get 'login' => 'users/sessions#new'
-    post 'login' => 'users/sessions#create'
-    get 'signup' => 'users/registrations#new'
-    post 'signup' => 'users/registrations#create'
-    get 'logout' => 'users/sessions#destroy'
-    delete 'logout' => 'users/sessions#destroy'
-  end
+  # as :user do
+  #   get 'users/edit' => 'users/registrations#edit'
+  #   put 'users/edit' => 'users/registrations#create', :as => 'registrations'
+  #   get 'login' => 'users/sessions#new'
+  #   post 'login' => 'users/sessions#create'
+  #   get 'signup' => 'users/registrations#new'
+  #   post 'signup' => 'users/registrations#create'
+  #   get 'logout' => 'users/sessions#destroy'
+  #   delete 'logout' => 'users/sessions#destroy'
+  # end
   # devise_for :users do
   #   # to solve the error [No route matches [GET] "/users/sign_out"]  => https://stackoverflow.com/questions/6567863/no-route-matches-get-users-sign-out
   #   #devise_scope :users do
