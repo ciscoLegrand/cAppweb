@@ -1,6 +1,7 @@
 class WebController < ApplicationController
   before_action :set_main_service, only: %w[web_services web_service ]
   before_action :set_service, only: %w[web_service]
+  before_action :set_cart
 
   def web_home
     @home = true
@@ -78,11 +79,24 @@ class WebController < ApplicationController
     @main_services = Cadmin::MainService.where.not(id: 1)
   end
 
-  private 
+  def web_cart 
+      add_breadcrumb 'Carrito'
+      @total_cart_amount = @cart.total_cart_amount
+      @main_service = @main_service
+  end
+    
+  
+    
+    private 
     def set_main_service 
       @main_service =  Cadmin::MainService.friendly.find(params[:main_service_id])
     end 
     def set_service 
       @service = Cadmin::Service.friendly.find(params[:service_id])
     end 
+    def set_cart 
+      if cadmin_user_signed_in?
+        @cart = Cadmin::Cart.find(session[:cart_id])
+      end
+    end
 end

@@ -41,7 +41,7 @@
             <%= render(SocialLinkComponent.new(href: WebConfig.first.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))%>
             <% if cadmin_user_signed_in? %>
               <div class="is-flex is-justify-content-center mx-3">
-                <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.cart_path, class:'is-clickable has-text-primary'%>
+                <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cart_path, class:'is-clickable has-text-primary'%>
                 <div class="tag is-rounded is-primary"><%= Cadmin::Cart.find(session[:cart_id]).cart_items.count %></div>
               </div>
               <div class="control mx-2">
