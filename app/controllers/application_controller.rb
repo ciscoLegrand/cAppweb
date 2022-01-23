@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   # before_action :set_services
   
   def set_locale
-    if user_signed_in?
-      I18n.locale = current_user.language # TODO: ADD TO CADMIN USER LANGUAGE FIELD TO SET THE LANGUAGE
+    if cadmin_user_signed_in?
+      I18n.locale = current_cadmin_user.language # TODO: ADD TO CADMIN USER LANGUAGE FIELD TO SET THE LANGUAGE
     else
       I18n.locale = params[:lang] || locale_from_header || I18n.default_locale
     end
