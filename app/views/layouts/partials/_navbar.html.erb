@@ -1,6 +1,9 @@
 
-    <nav class="navbar " role="navigation" aria-label="main navigation">
-        <%= link_to inline_svg_tag('icons/logo.svg'), root_path, class: "navbar-item no-background mr-5"%>
+    <nav class="navbar px-3" role="navigation" aria-label="main navigation">
+        <%#= link_to inline_svg_tag('icons/logo.svg'), root_path, class: "navbar-item no-background mr-5"%>
+      <div class="is-flex is-justify-content-center is-align-items-center mx-3">
+        <div class="is-size-4 has-text-weight-medium is-family-monospace">cappweb.</div><div class="has-text-weight-semibold is-size-3-desktop is-size-4-touch ">dev</div>
+      </div>
       <div class="navbar-brand burger">
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-nav">
           <span aria-hidden="true"></span>
@@ -37,18 +40,20 @@
             <%= render(SocialLinkComponent.new(href: WebConfig.first.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))%>
             <%= render(SocialLinkComponent.new(href: WebConfig.first.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))%>
             <% if cadmin_user_signed_in? %>
-              <div class="control">
+              <div class="is-flex is-justify-content-center mx-3">
+                <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.cart_path, class:'is-clickable has-text-primary'%>
+                <div class="tag is-rounded is-primary"><%= Cadmin::Cart.find(session[:cart_id]).cart_items.count %></div>
+              </div>
+              <div class="control mx-2">
                 <div class="tags has-addons">
                   <span class="tag is-dark is-large"><%= current_cadmin_user.name %></span>
                   <span class="tag is-success is-large"><%= link_to "",  cadmin.logout_path, method: :delete, class: 'delete' %></span>
                 </div>
               </div>
-              <div class="is-flex is-justify-content">
-                <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.cart_path, class:'is-clickable has-text-primary'%>
-                <div class="tag is-rounded is-primary"><%= Cadmin::Cart.find(session[:cart_id]).cart_items.count %></div>
-              </div>
             <%else%>
-              <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.login_path, class:'is-clickable has-text-primary'%>
+              <div class="is-flex is-justify-content-center mx-3">
+                <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cadmin.login_path, class:'is-clickable has-text-primary'%>
+              </div>
               <%= link_to image_tag('icons/ico-login.svg', class: 'icon is-medium'), cadmin.login_path %>
             <% end %> 
           </div>
