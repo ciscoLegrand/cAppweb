@@ -6,13 +6,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :configure_permitted_parameters, if: :devise_controller?
   skip_before_action :verify_authenticity_token
-  # before_action :masquerade_user!
   before_action :set_main_services
   # before_action :set_services
   
   def set_locale
     if cadmin_user_signed_in?
-      I18n.locale = current_cadmin_user.language # TODO: ADD TO CADMIN USER LANGUAGE FIELD TO SET THE LANGUAGE
+      # I18n.locale = current_cadmin_user.language # TODO: ADD TO CADMIN USER LANGUAGE FIELD TO SET THE LANGUAGE
     else
       I18n.locale = params[:lang] || locale_from_header || I18n.default_locale
     end
@@ -22,18 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  # TODO: DELETE DEVISE CONFIGURATION IF ONLY USED ON CADMIN ENGINE 
-  # def configure_permitted_parameters
-  #   # devise invitable conf
-  #   added_attrs = [:email, :password, :password_confirmation, :remember_me]
-  #   devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-  #   devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-  #   devise_parameter_sanitizer.permit :accept_invitation, keys: [:email]
-  #   # end devise invitable conf
-
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :last_name, :address, :province, :cod_postal, :phone, :language])
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:name,:last_name, :address, :province, :cod_postal, :phone, :dni, :avatar, :language])
-  # end
   
   def set_main_services
     @main_services =  Cadmin::MainService.all 
