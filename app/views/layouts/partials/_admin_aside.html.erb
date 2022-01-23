@@ -114,7 +114,7 @@
         </li>
         <li>
           <% if cadmin_user_signed_in? %>
-            <%= link_to logout_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'logout', action: 'click->menu#set_active_menu_item'}  do %>
+            <%= link_to cadmin.logout_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'logout', action: 'click->menu#set_active_menu_item'}  do %>
               <span class="panel-icon ">
                 <%= inline_svg_tag('icons/ico-sign-out-solid.svg', class: 'icon  has-text-info')%>
               </span>        
