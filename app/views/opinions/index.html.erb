@@ -1,5 +1,8 @@
 <h1 class="table-subtitle subtitle is-4 has-text-centered has-text-white has-background-primary">Opiniones</h1>
-<%= button_to 'Scrape', scrape_opinions_path, class: "button is-success is-hoverable   mb-2" %>
+<div class="is-flex mb-3">
+<%= button_to 'Scrape', scrape_opinions_path, class: "button is-success is-hoverable mb-2 mr-2" %>
+<%= link_to 'New', new_opinion_path, class: "button is-info is-hoverable   mb-2 ml-2" %>
+</div>
 <div class="clearfix"></div>
 <%= turbo_frame_tag :opinions do %>
   <%= render TableComponent.new(headers: @headers) do |table| %>
@@ -7,7 +10,7 @@
       <%= table.row(cells: object_to_table_cells(opinion, @attrs)) do  |row| %>
         <% row.actions do %>
           <div class="buttons is-justify-content-center">
-            <% if current_user.is_admin? %>
+            <% if current_cadmin_user.admin? %>
               <%= link_to inline_svg_tag('icons/ico-eye.svg', class: ' icon is-medium has-text-primary'), opinion,  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
               <%= link_to inline_svg_tag('icons/ico-edit.svg', class: ' icon is-medium has-text-primary'), edit_opinion_path(opinion),  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
               <%= button_to opinion , method: :delete,data: { controller: "swal", action: "click->swal#fire", swal_options_value: default_swal_options, turbo_frame: "_top" }, class: 'button is-clickable' do  %>

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   
   resources :opinions do
-    match '/scrape', to: 'opinions#scrape', via: :post, on: :collection
+    match '/scrape', to: 'opinions#scrape', via: [:get, :post], on: :collection, as: :scrape
   end
   
   resources :todo_lists do
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
   
   resources :contacts, only: [:create, :new]
-  post "/contacts/new"
+  # post "/contacts/new"
   resources :abouts
   resources :awards
   resources :home_banners

@@ -7,7 +7,7 @@
       <%= table.row(cells: object_to_table_cells(album, @attrs)) do  |row| %>
         <% row.actions do %>
           <div class="buttons is-justify-content-center">
-            <% if current_user.is_admin? %>
+            <% if current_cadmin_user.admin? %>
               <%= link_to inline_svg_tag('icons/ico-eye.svg', class: ' icon is-medium has-text-primary'), album,  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
               <%= link_to inline_svg_tag('icons/ico-edit.svg', class: ' icon is-medium has-text-primary'), edit_album_path(album),  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
               <%= button_to album , method: :delete,data: { controller: "swal", action: "click->swal#fire", swal_options_value: default_swal_options, turbo_frame: "_top" }, class: 'button is-clickable' do  %>

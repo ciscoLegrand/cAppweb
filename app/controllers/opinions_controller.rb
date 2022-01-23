@@ -9,6 +9,7 @@ class OpinionsController < ApplicationController
     @attrs = [:name,:title,:body_truncate,:ratingStar] 
     @pagy, @opinions = pagy(Opinion.all, items: 10)
   end
+  
   # to do web_scrapping
   def scrape
     url = 'https://www.bodas.net/musica/la-gramola-discotecas-moviles--e15600/opiniones'
