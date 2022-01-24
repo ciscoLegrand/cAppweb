@@ -95,8 +95,6 @@ class WebController < ApplicationController
       @service = Cadmin::Service.friendly.find(params[:service_id])
     end 
     def set_cart 
-      if cadmin_user_signed_in?
-        @cart = Cadmin::Cart.find(session[:cart_id])
-      end
+      @cart = Cadmin::Cart.find(session[:cart_id]) if current_cadmin_user.present?
     end
 end
