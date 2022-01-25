@@ -23,7 +23,6 @@ class WebController < ApplicationController
   def web_services
     add_breadcrumb @main_service.name, main_service_path(@main_service)
     @services = Cadmin::MainService.friendly.find(params[:main_service_id]).services.friendly.where(params[:service_id])
-    @cart = Cadmin::Cart.find(session[:cart_id]).id if current_cadmin_user.present?
   end
 
   def web_service
@@ -59,7 +58,7 @@ class WebController < ApplicationController
     @album = Album.find(params[:album_id])
     add_breadcrumb @album.title, galeria_path(@album)
     @total_images = 0 
-    @album.galleries.each {|gal| @total_images += gal.images.length }
+    @album.galleries.each { |gal| @total_images += gal.images.length }
     @password = @album.password
     
     if params.has_key?(:password) && params[:password].length > 0 && params[:password] == @password
@@ -95,6 +94,6 @@ class WebController < ApplicationController
       @service = Cadmin::Service.friendly.find(params[:service_id])
     end 
     def set_cart 
-      @cart = Cadmin::Cart.find(session[:cart_id]) if current_cadmin_user.present?
+      @cart = Cadmin::Cart.find(session[:cart_id]) if session[:cart_id].present?
     end
 end

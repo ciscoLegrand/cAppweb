@@ -42,12 +42,12 @@
             <% if cadmin_user_signed_in? %>
               <div class="is-flex is-justify-content-center mx-3">
                 <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cart_path, class:'is-clickable has-text-primary'%>
-                <div class="tag is-rounded is-primary"><%= Cadmin::Cart.find(session[:cart_id]).cart_items.count %></div>
+                <%= content_tag :div, @cart.cart_items.count, class:'tag is-rounded is-primary' if @cart.present? %>
               </div>
               <div class="control mx-2">
                 <div class="tags has-addons">
-                  <span class="tag is-dark is-large"><%= current_cadmin_user.name %></span>
-                  <span class="tag is-success is-large"><%= link_to "",  cadmin.logout_path, method: :delete, class: 'delete' %></span>
+                  <span class="tag is-dark-light is-large"><%= link_to  current_cadmin_user.name, cadmin.dashboard_path, class: 'has-text-primary' %><%= link_to "",  cadmin.logout_path, method: :delete, class: 'delete' %></span>
+                  
                 </div>
               </div>
             <%else%>
