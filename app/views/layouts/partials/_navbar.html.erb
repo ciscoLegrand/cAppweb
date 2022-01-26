@@ -1,9 +1,12 @@
 
     <nav class="navbar px-3" role="navigation" aria-label="main navigation">
         <%#= link_to inline_svg_tag('icons/logo.svg'), root_path, class: "navbar-item no-background mr-5"%>
-      <div class="is-flex is-justify-content-center is-align-items-center mx-3">
-        <div class="is-size-4 has-text-weight-medium is-family-monospace">cappweb.</div><div class="has-text-weight-semibold is-size-3-desktop is-size-4-touch ">dev</div>
-      </div>
+      <%= link_to root_path do %>
+        <div class="is-flex is-justify-content-center is-align-items-center mx-3">
+          <div class="is-size-4 has-text-weight-medium is-family-monospace">cappweb</div><div class="has-text-weight-semibold is-size-3-desktop is-size-4-touch ">.dev</div>
+        </div>
+      <% end %>
+      
       <div class="navbar-brand burger">
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-nav">
           <span aria-hidden="true"></span>
