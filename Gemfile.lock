@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:ciscoLegrand/cAdmin.git
-  revision: 31d559f19678c07667f1869b53730f16364547ae
+  revision: de297a4873e24f54831efc717fde291c9b187794
   branch: development
   specs:
     cadmin (0.1.3)
@@ -184,7 +184,6 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
-    ffi (1.15.5)
     ffi (1.15.5-x64-mingw32)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
@@ -194,7 +193,7 @@ GEM
     headless (2.3.1)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
-    i18n (1.8.11)
+    i18n (1.9.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -264,8 +263,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.1-x64-mingw32)
       racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-linux)
-      racc (~> 1.4)
     ntlm-http (0.1.1)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -283,7 +280,6 @@ GEM
     orm_adapter (0.5.0)
     pagy (5.9.1)
       activesupport
-    pg (1.3.0)
     pg (1.3.0-x64-mingw32)
     pg_search (2.3.6)
       activerecord (>= 5.2)
@@ -297,7 +293,7 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (4.0.6)
-    puma (5.6.0)
+    puma (5.6.1)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -342,10 +338,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rest-client (2.0.2)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
     rest-client (2.0.2-x64-mingw32)
       ffi (~> 1.9)
       http-cookie (>= 1.0.2, < 2.0)
@@ -379,8 +371,6 @@ GEM
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -417,7 +407,6 @@ GEM
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8)
     unf_ext (0.0.8-x64-mingw32)
     view_component (2.48.0)
       activesupport (>= 5.0.0, < 8.0)
@@ -446,7 +435,6 @@ GEM
 
 PLATFORMS
   x64-mingw32
-  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers
