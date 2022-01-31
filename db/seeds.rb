@@ -168,6 +168,7 @@ Cadmin::EventService.create(event_id: 12, service_id: 4, overtime: 1)
 Cadmin::EventService.create(event_id: 13, service_id: 4, overtime: 1)
 Cadmin::EventService.create(event_id: 14, service_id: 4, overtime: 1)
 
+Cadmin::Event.all.each { |ev| ev.update(total_amount: ev.total_services_amount) }
 
 Cadmin::Interview.create(event_id: 1, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
 Cadmin::Interview.create(event_id: 2, employee_id: 10, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )

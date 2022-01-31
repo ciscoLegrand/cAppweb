@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_203901) do
+ActiveRecord::Schema.define(version: 2022_01_03_182420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_203901) do
     t.string "title", null: false
     t.text "content", null: false
     t.integer "status", default: 0, null: false
-    t.date "published_at", default: "2022-01-21", null: false
+    t.date "published_at", default: "2022-01-31", null: false
     t.date "unpublished_at"
     t.string "metatitle"
     t.string "metadata"
@@ -335,11 +335,13 @@ ActiveRecord::Schema.define(version: 2022_01_27_203901) do
   end
 
   create_table "cadmin_users", force: :cascade do |t|
-    t.string "username", default: "", null: false
+    t.string "username", null: false
     t.string "name", default: "", null: false
     t.string "last_name", default: "", null: false
-    t.string "email", default: "", null: false
-    t.string "phone", null: false
+    t.string "email", null: false
+    t.string "phone", default: "", null: false
+    t.string "stripe_customer_id"
+    t.string "stripe_subscription_id"
     t.integer "postal_code"
     t.string "city"
     t.string "province"
@@ -352,9 +354,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_203901) do
     t.string "role", default: "user", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "slug"
-    t.string "stripe_customer_id"
-    t.integer "subscription_id"
-    t.integer "price_id"
+    t.integer "stripe_price_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

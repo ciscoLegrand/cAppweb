@@ -58,8 +58,8 @@ gem 'kimurai', '~> 1.4'
 # digital ocean spaces
 gem 'aws-sdk-s3'
 
-gem 'devise'
-gem 'devise_invitable'
+# gem 'devise'
+# gem 'devise_invitable'
 gem 'bulma-rails'
 gem 'turbo-rails'  
 gem 'pagy'
@@ -77,6 +77,6 @@ gem "active_model_serializers"
 gem "rspec-rails"
 gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git', branch: 'development'
 #  gem 'cadmin', path: '../cadmin'
-
+  
 
 
