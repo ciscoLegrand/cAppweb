@@ -1,6 +1,7 @@
 class WebController < ApplicationController
   before_action :set_main_service, only: %w[web_services web_service ]
   before_action :set_service, only: %w[web_service]
+  before_action :set_user, only: %w[web_profile]
   before_action :set_cart
 
   def web_home
@@ -83,7 +84,14 @@ class WebController < ApplicationController
       @total_cart_amount = @cart.total_cart_amount
       @main_service = @main_service
   end
+  
+  def web_profile
+    add_breadcrumb 'Cuenta', profile_path
     
+    @events = Cadmin::Event.where(customer_id: @user.id) 
+    @conversations = Cadmin::Conversation.all
+    
+  end
   
     
     private 
@@ -95,5 +103,9 @@ class WebController < ApplicationController
     end 
     def set_cart 
       @cart = Cadmin::Cart.find(session[:cart_id]) if session[:cart_id].present?
+    end
+
+    def set_user 
+      @user ||= current_cadmin_user
     end
 end

@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css", "data-turbo-track": "reload"%>
     <%= stylesheet_link_tag 'https://npmcdn.com/flatpickr/dist/themes/dark.css', 'data-turbo-track': 'reload'%> 
     <%= stylesheet_link_tag "https://unpkg.com/sweetalert2@10.15.7/dist/sweetalert2.min.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css", "data-turbo-track": "reload" %>
     <%= yield :head %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag "turbo", type: "module" %>
@@ -18,14 +19,15 @@
     <%= render 'layouts/partials/navbar' %>
     <%= render NotificationComponent.with_collection(flash.to_a) %>
     
-    <% unless @home %>
-      <h1 class="title is-1-desktop is-4-touch has-background-primary has-text-centered has-text-white py-2 is-fullwidth">
-        <%= render_breadcrumbs %>
-      </h1>
-    <% end %>
     
-      
-    <%= yield %>
+    <div class="has-min-height">
+      <% unless @home %>
+        <h1 class="title is-1-desktop is-4-touch has-background-primary has-text-centered has-text-white py-2 is-fullwidth">
+          <%= render_breadcrumbs %>
+        </h1>
+      <% end %>
+      <%= yield %>
+    </div>
     <%= render 'layouts/partials/footer' %>
   </body>
 </html>

@@ -1,0 +1,57 @@
+
+<div class="tabs is-centered">
+  <ul>
+    <li class="is-active mx-3">
+      <%= link_to '' do %>
+        <%= inline_svg_tag('icons/ico-dj.svg', class: 'icon is-medium is-pulled-left mt-4')%>
+        <span class="is-size-4-desktop is-size-5-tablet is-size-6-mobile">Events</span>
+      <% end %>
+    </li>
+    <li class="mx-3">
+      <%= link_to '' do %>
+        <%= inline_svg_tag('icons/ico-chat-alt-2-solid.svg', class: 'icon is-medium is-primary  is-pulled-left mt-4')%>
+        <span class="is-size-4-desktop is-size-5-tablet is-size-6-mobile">Messages</span>
+      <% end %>
+    </li>
+    <li class="mx-3">
+      <%= link_to '' do %>
+        <%= inline_svg_tag('icons/ico-photograph-solid.svg', class: 'icon is-lamediumis-primary is-pulled-left mt-4')%>
+        <span class="is-size-4-desktop is-size-5-tablet is-size-6-mobile">Galleries</span>
+      <% end %>
+    </li>
+    <li class="mx-3">
+      <%= link_to '' do %>
+        <%= inline_svg_tag('icons/ico-dj.svg', class: 'icon is-medium is-pulled-left mt-4')%>
+        <span class="is-size-4-desktop is-size-5-tablet is-size-6-mobile">Documents</span>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+
+  <%= turbo_frame_tag :conversations do %>
+    <div class="columns">
+      <aside class="column is-2">
+        <h3 class="menu-label title is-size-4 has-text-centered">Contactos</h3>
+        <ul class="menu-list is-flex is-flex-direction-column is-justify-content-center is-align-items-center">          
+          <% @conversations.each do |conversation| %>
+            <% if conversation.sender_id == current_cadmin_user.id || conversation.recipient_id == current_cadmin_user.id %>
+              <% recipient = conversation.sender_id == current_cadmin_user.id ? Cadmin::User.find(conversation.recipient_id) : Cadmin::User.find(conversation.sender_id) %>
+
+              <li class="is-flex button is-primary">
+                <%= link_to recipient.username, cadmin.conversations_path(id: conversation.id), class: 'has-text-weight-semi-bold ml-2 px-4'%>
+                <% if conversation.messages.where(viewed: false).count > 0 %>
+                  <span class="tag is-danger mr-2 is-rounded"><%= conversation.messages.where(viewed: false).count%></span>
+                <% end %>
+                <%= button_to nil,  cadmin.conversation_path(conversation), method: :delete, class: 'delete is-medium has-background-warning',  data: { confirm: 'Are you sure?' } %>
+              </li>
+            <% end %> 
+          <% end %>
+        </ul>
+      </aside>
+      <div class="column is-8 is-offset-4">
+        <%= turbo_frame_tag :messages, loading: :lazy,target: '_top', src: cadmin.conversation_messages_path(params['id'])  if params['id'].present?  %>
+      </div>
+    </div>
+  <% end %>
+

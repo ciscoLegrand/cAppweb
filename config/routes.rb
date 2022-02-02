@@ -47,12 +47,13 @@ Rails.application.routes.draw do
   match 'galerias',                                         to: 'web#web_albums',               via: :get
   match 'contacto',                                         to: 'web#web_contact',              via: :get
   match 'resultados',                                       to: 'web#web_search_results',       via: :get
-  match 'politica-de-cookies',                              to: 'web#web_aviso_cookies',        via: :get,          as: 'cookies'
-  match 'aviso-legal',                                      to: 'web#web_aviso_legal',          via: :get,          as: 'legal'
-  match 'politica-de-privacidad',                           to: 'web#web_aviso_privacidad',     via: :get,          as: 'privacidad'
+  match 'profile/:user_id',                                 to: 'web#web_profile',              via: :get,          as: :profile
+  match 'politica-de-cookies',                              to: 'web#web_aviso_cookies',        via: :get,          as: :cookies
+  match 'aviso-legal',                                      to: 'web#web_aviso_legal',          via: :get,          as: :legal
+  match 'politica-de-privacidad',                           to: 'web#web_aviso_privacidad',     via: :get,          as: :privacidad
   match 'usuarios',                                         to: 'users#index',                  via: :get
   match 'email-contacto',                                   to: "contacts#index",               via: :get
-  get '/galeria/:album_id',                                 to: 'web#web_album',                                    as: 'galeria'
+  get '/galeria/:album_id',                                 to: 'web#web_album',                                    as: :galeria
   
 
   # devise_for :users, :controllers => { 

@@ -49,8 +49,11 @@
               </div>
               <div class="control mx-2">
                 <div class="tags has-addons">
-                  <span class="tag is-dark-light is-large"><%= link_to  current_cadmin_user.name, cadmin.dashboard_path, class: 'has-text-primary' %><%= link_to "",  cadmin.logout_path, method: :delete, class: 'delete' %></span>
-                  
+                  <% if current_cadmin_user.admin? || current_cadmin_user.employee? %>
+                    <span class="tag is-dark-light is-large"><%= link_to  current_cadmin_user.name, cadmin.dashboard_path, class: 'has-text-primary' %><%= link_to "",  cadmin.logout_path, method: :delete, class: 'delete' %></span>
+                  <% else %>
+                    <span class="tag is-dark-light is-large"><%= link_to  current_cadmin_user.name, profile_path(user_id: current_cadmin_user), class: 'has-text-primary' %><%= link_to "",  cadmin.logout_path, method: :delete, class: 'delete' %></span>
+                  <% end %>
                 </div>
               </div>
             <%else%>
