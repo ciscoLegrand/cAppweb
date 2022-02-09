@@ -222,8 +222,8 @@ WebConfig.create(
 HomeBanner.create(title: 'cApp', body:'Praesent vitae eros at ex maximus aliquet eu ac nisi. Aliquam erat volutpat.')
 
 
-puts Cadmin::Service.last.name
-puts Cadmin::ArticleCategory.last.name
-puts Cadmin::Tag.last.name
-puts Cadmin::Article.last.title
-puts Cadmin::Event.last.title
+puts Cadmin::Service.last&.name 
+puts Cadmin::ArticleCategory.last&.name 
+puts Cadmin::Tag.last&.name 
+puts Cadmin::Article.last&.title 
+puts Cadmin::Event.last&.title
