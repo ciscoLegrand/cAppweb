@@ -37,11 +37,11 @@
         <div class="navbar-end">
                
           <div class="navbar-item">
-            <%= render(SocialLinkComponent.new(href: WebConfig.first.url_facebook,  name: 'facebook',ico: 'ico-facebook.svg'))    if WebConfig.first.url_facebook.present?  %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first.url_instagram, name: 'instagram',ico: 'ico-instagram.svg'))  if WebConfig.first.url_instagram.present? %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first.url_twitter,   name: 'tiwtter',ico: 'ico-twitter.svg'))      if WebConfig.first.url_twitter.present?   %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))  if WebConfig.first.url_pinterest.present? %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))   if WebConfig.first.url_bodas_net.present? %>
+            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_facebook,  name: 'facebook',ico: 'ico-facebook.svg'))     %>
+            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_instagram, name: 'instagram',ico: 'ico-instagram.svg'))   %>
+            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_twitter,   name: 'tiwtter',ico: 'ico-twitter.svg'))       %>
+            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))   %>
+            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))    %>
             <% if cadmin_user_signed_in? %>
               <div class="is-flex is-justify-content-center mx-3">
                 <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cart_path, class:'is-clickable has-text-primary'%>

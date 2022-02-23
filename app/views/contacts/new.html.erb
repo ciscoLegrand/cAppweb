@@ -110,11 +110,11 @@
                     <%=inline_svg_tag('icons/ico-whatsapp.svg')%>
                   </figure>
                 <% end %>   
-                <%= render(SocialLinkComponent.new(href: WebConfig.first.url_facebook, name: 'facebook',ico: 'ico-facebook.svg'))%>
-                <%= render(SocialLinkComponent.new(href: WebConfig.first.url_instagram, name: 'instagram',ico: 'ico-instagram.svg'))%>
-                <%= render(SocialLinkComponent.new(href: WebConfig.first.url_twitter, name: 'tiwtter',ico: 'ico-twitter.svg'))%>
-                <%= render(SocialLinkComponent.new(href: WebConfig.first.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))%>
-                <%= render(SocialLinkComponent.new(href: WebConfig.first.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))%>
+                <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_facebook, name: 'facebook',ico: 'ico-facebook.svg'))%>
+                <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_instagram, name: 'instagram',ico: 'ico-instagram.svg'))%>
+                <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_twitter, name: 'tiwtter',ico: 'ico-twitter.svg'))%>
+                <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))%>
+                <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))%>
               </div>               
             </div> 
           </div>

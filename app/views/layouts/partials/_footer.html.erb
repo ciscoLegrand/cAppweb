@@ -8,7 +8,7 @@
 <footer class="is-large has-background-primary">
   <div class="columns p-2">
     <div class="column is-4 has-text-left-desktop has-text-centered-touch has-text-white">
-      <%= this_year %> <strong><%= WebConfig.first.enterprise_name if WebConfig.first.enterprise_name.present? %></strong> Servicios para Eventos en Galicia.
+      <%= this_year %> <strong><%= WebConfig.first&.enterprise_name %></strong> Servicios para Eventos en Galicia.
     </div>
     <div class="column is-4 has-text-centered ">
       <%= link_to 'Aviso legal', legal_path, class:'is-hoverable has-text-white' %> |
