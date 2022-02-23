@@ -126,8 +126,7 @@ services.each do |service|
   service.save 
 end
 #! It is necessary to have a default discount of 0 so that it does not break the app when calculating the discounts
-dd  = Cadmin::Discount.create(name: 'default',          type_discount: 'default', description: '0 descuento', amount: 0.00)
-
+d0  = Cadmin::Discount.create(name: 'default',          type_discount: 'default', description: '0 descuento', amount: 0.00)
 d1  = Cadmin::Discount.create(name: 'gramola',          type_discount: 'cabinas', description: 'descuento por llevar la cabina mas rata', amount: 50.00)
 d2  = Cadmin::Discount.create(name: 'Hoteles Oca',      type_discount: 'cabinas', description: 'descuento cadena hoteles oca ', percentage: 15)
 d3  = Cadmin::Discount.create(name: 'Bendoiro family',  type_discount: 'cabinas', description: 'descuento cadena de choias bendoiro y cia ', percentage: 10)
@@ -143,49 +142,46 @@ def createtimestamps
   str.strftime('%y%m%d%H%M')
 end
 
-ev1  = Cadmin::Event.create(title: 'Marcos y Carolina',   customer_id: c13.id, employee_id: e1.id, number:"LGMD/00003-#{createtimestamps}", type_name: et1.name, date: '10/08/2022', guests: 100,  place_id: l1.id, observations: 'evento creado con seeds')
-ev2  = Cadmin::Event.create(title: 'Eva y Juan',          customer_id: c1.id,  employee_id: e1.id, number:"LGMD/00004-#{createtimestamps}", type_name:et1.name,  date: '11/06/2022', guests: 146,  place_id: l1.id, observations: 'evento creado con seeds')
-ev3  = Cadmin::Event.create(title: 'Alicia y Bea',        customer_id: c2.id,  employee_id: e2.id, number:"LGMD/00002-#{createtimestamps}", type_name:et1.name,  date: '01/05/2022', guests: 213,  place_id: l3.id, observations: 'evento creado con seeds')
-ev4  = Cadmin::Event.create(title: 'Bea y Juan',          customer_id: c3.id,  employee_id: e3.id, number:"LGMD/00006-#{createtimestamps}", type_name:et1.name,  date: '11/05/2022', guests: 111,  place_id: l2.id, observations: 'evento creado con seeds')
-ev5  = Cadmin::Event.create(title: 'Hector y Ana',        customer_id: c4.id,  employee_id: e1.id, number:"LGMD/00007-#{createtimestamps}", type_name:et1.name,  date: '21/05/2022', guests: 34,   place_id: l1.id, observations: 'evento creado con seeds')
-ev6  = Cadmin::Event.create(title: 'Isabel y Pedro',      customer_id: c5.id,  employee_id: e2.id, number:"LGMD/00005-#{createtimestamps}", type_name:et1.name,  date: '11/06/2022', guests: 99,   place_id: l2.id, observations: 'evento creado con seeds')
-ev7  = Cadmin::Event.create(title: 'Maria y Mario',       customer_id: c6.id,                      number:"LGMD/00004-#{createtimestamps}", type_name:et1.name,  date: '11/06/2022', guests: 76,   place_id: l1.id, observations: 'evento creado con seeds')
-ev8  = Cadmin::Event.create(title: 'Lucia y Lucio',       customer_id: c7.id,                      number:"LGMD/00003-#{createtimestamps}", type_name:et1.name,  date: '31/07/2022', guests: 257,  place_id: l1.id, observations: 'evento creado con seeds')
-ev9  = Cadmin::Event.create(title: 'Lore y Pablo',        customer_id: c8.id,                      number:"LGMD/00002-#{createtimestamps}", type_name:et1.name,  date: '01/11/2021', guests: 482,  place_id: l1.id, observations: 'evento creado con seeds')
-ev10 = Cadmin::Event.create(title: 'Paula y Lucas',       customer_id: c9.id,                      number:"LGMD/00001-#{createtimestamps}", type_name:et1.name,  date: '31/10/2021', guests: 300,  place_id: l3.id, observations: 'evento creado con seeds')
-ev11 = Cadmin::Event.create(title: 'Daniela y Dani',      customer_id: c10.id,                     number:"LGMD/00004-#{createtimestamps}", type_name:et1.name,  date: '01/01/2022', guests: 213,  place_id: l2.id, observations: 'evento creado con seeds')
-ev12 = Cadmin::Event.create(title: 'Moncha y Ramon',      customer_id: c11.id, employee_id: e1.id, number:"LGMD/00005-#{createtimestamps}", type_name:et1.name,  date: '11/01/2022', guests: 123,  place_id: l1.id, observations: 'evento creado con seeds')
-ev13 = Cadmin::Event.create(title: 'Maria y Jose',        customer_id: c12.id, employee_id: e1.id, number:"LGMD/00006-#{createtimestamps}", type_name:et1.name,  date: '16/08/2022', guests: 111,  place_id: l2.id, observations: 'evento creado con seeds')
+ev1  = Cadmin::Event.create(title: 'Marcos y Carolina',   customer_id: c13.id, employee_id: e1.id, number:"LGMD/#{c13.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '10/08/2022', guests: 100,  place_id: l1.id, observations: 'evento creado con seeds')
+ev2  = Cadmin::Event.create(title: 'Eva y Juan',          customer_id: c1.id,  employee_id: e1.id, number: "LGMD/#{c1.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '11/06/2022', guests: 146,  place_id: l1.id, observations: 'evento creado con seeds')
+ev3  = Cadmin::Event.create(title: 'Alicia y Bea',        customer_id: c2.id,  employee_id: e2.id, number: "LGMD/#{c2.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '01/05/2022', guests: 213,  place_id: l3.id, observations: 'evento creado con seeds')
+ev4  = Cadmin::Event.create(title: 'Bea y Juan',          customer_id: c3.id,  employee_id: e3.id, number: "LGMD/#{c3.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '11/05/2022', guests: 111,  place_id: l2.id, observations: 'evento creado con seeds')
+ev5  = Cadmin::Event.create(title: 'Hector y Ana',        customer_id: c4.id,  employee_id: e1.id, number: "LGMD/#{c4.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '21/05/2022', guests: 34,   place_id: l1.id, observations: 'evento creado con seeds')
+ev6  = Cadmin::Event.create(title: 'Isabel y Pedro',      customer_id: c5.id,  employee_id: e2.id, number: "LGMD/#{c5.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '11/06/2022', guests: 99,   place_id: l2.id, observations: 'evento creado con seeds')
+ev7  = Cadmin::Event.create(title: 'Maria y Mario',       customer_id: c6.id,                      number: "LGMD/#{c6.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '11/06/2022', guests: 76,   place_id: l1.id, observations: 'evento creado con seeds')
+ev8  = Cadmin::Event.create(title: 'Lucia y Lucio',       customer_id: c7.id,                      number: "LGMD/#{c7.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '31/07/2022', guests: 257,  place_id: l1.id, observations: 'evento creado con seeds')
+ev9  = Cadmin::Event.create(title: 'Lore y Pablo',        customer_id: c8.id,                      number: "LGMD/#{c8.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '01/11/2021', guests: 482,  place_id: l1.id, observations: 'evento creado con seeds')
+ev10 = Cadmin::Event.create(title: 'Paula y Lucas',       customer_id: c9.id,                      number: "LGMD/#{c9.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '31/10/2021', guests: 300,  place_id: l3.id, observations: 'evento creado con seeds')
+ev11 = Cadmin::Event.create(title: 'Daniela y Dani',      customer_id: c10.id,                     number:"LGMD/#{c10.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '01/01/2022', guests: 213,  place_id: l2.id, observations: 'evento creado con seeds')
+ev12 = Cadmin::Event.create(title: 'Moncha y Ramon',      customer_id: c11.id, employee_id: e1.id, number:"LGMD/#{c11.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '11/01/2022', guests: 123,  place_id: l1.id, observations: 'evento creado con seeds')
+ev13 = Cadmin::Event.create(title: 'Maria y Jose',        customer_id: c12.id, employee_id: e1.id, number:"LGMD/#{c12.id.to_s.rjust(6, "0")}-#{createtimestamps}",  event_type_id:et1.id,  date: '16/08/2022', guests: 111,  place_id: l2.id, observations: 'evento creado con seeds')
 
 
-Cadmin::EventService.create(event_id: ev1.id,  service_id: gramola.id, discount_id: d2.id, start_time: 3, overtime: 1)
-Cadmin::EventService.create(event_id: ev1.id,  service_id: pic.id, start_time: 3, overtime: 1)
-Cadmin::EventService.create(event_id: ev1.id,  service_id: n3.id)
-Cadmin::EventService.create(event_id: ev2.id,  service_id: piano.id)
-Cadmin::EventService.create(event_id: ev2.id,  service_id: vwt.id, discount_id:d3.id, start_time: 3, overtime: 1)
-Cadmin::EventService.create(event_id: ev3.id,  service_id: vwt.id, start_time: 3)
-Cadmin::EventService.create(event_id: ev4.id,  service_id: carro.id, discount_id: d1.id, start_time: 3, overtime: 1)
-Cadmin::EventService.create(event_id: ev5.id,  service_id: jbx.id)
-Cadmin::EventService.create(event_id: ev6.id,  service_id: kids.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev6.id,  service_id: n1.id)
-Cadmin::EventService.create(event_id: ev7.id,  service_id: gramola.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev8.id,  service_id: moon.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev9.id,  service_id: kids.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev10.id, service_id: kids.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev10.id, service_id: gramola.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev11.id, service_id: moon.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev12.id, service_id: carro.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev13.id, service_id: carro.id, overtime: 1)
-Cadmin::EventService.create(event_id: ev13.id, service_id: jbx.id)
-
-Cadmin::Event.all.each { |ev| ev.update(total_amount: ev.total_services_amount) }
+Cadmin::EventService.create(event_id: ev1.id,  service_id: gramola.id,  discount_id: d1.id,   start_time: 3,  overtime: 1)
+Cadmin::EventService.create(event_id: ev1.id,  service_id: pic.id,      discount_id: d0.id,   start_time: 3,  overtime: 1)
+Cadmin::EventService.create(event_id: ev1.id,  service_id: n3.id,       discount_id: d0.id,)
+Cadmin::EventService.create(event_id: ev2.id,  service_id: piano.id,    discount_id: d0.id,)
+Cadmin::EventService.create(event_id: ev2.id,  service_id: vwt.id,      discount_id: d0.id,   start_time: 3,  overtime: 1)
+Cadmin::EventService.create(event_id: ev3.id,  service_id: vwt.id,      discount_id: d0.id,   start_time: 3)
+Cadmin::EventService.create(event_id: ev4.id,  service_id: carro.id,    discount_id: d0.id,   start_time: 3,  overtime: 1)
+Cadmin::EventService.create(event_id: ev5.id,  service_id: jbx.id,      discount_id: d0.id,)
+Cadmin::EventService.create(event_id: ev6.id,  service_id: kids.id,     discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev6.id,  service_id: n1.id,       discount_id: d0.id,)
+Cadmin::EventService.create(event_id: ev7.id,  service_id: gramola.id,  discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev8.id,  service_id: moon.id,     discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev9.id,  service_id: kids.id,     discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev10.id, service_id: kids.id,     discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev10.id, service_id: gramola.id,  discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev11.id, service_id: moon.id,     discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev12.id, service_id: carro.id,    discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev13.id, service_id: carro.id,    discount_id: d0.id,                   overtime: 1)
+Cadmin::EventService.create(event_id: ev13.id, service_id: jbx.id,      discount_id: d0.id,)
 
 Cadmin::Interview.create(event_id: ev1.id, employee_id: ev1.employee_id, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
 Cadmin::Interview.create(event_id: ev2.id, employee_id: ev2.employee_id, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
 Cadmin::Interview.create(event_id: ev3.id, employee_id: ev3.employee_id, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
 Cadmin::Interview.create(event_id: ev4.id, employee_id: ev4.employee_id, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
 Cadmin::Interview.create(event_id: ev5.id, employee_id: ev5.employee_id, appetizer_music: 'tropical', bridal_dance: 'all of me', gift_information: 'other gifts and music' )
-
 
 ar1 = Cadmin::ArticleCategory.create(name: 'Web Development')
 ar2 = Cadmin::ArticleCategory.create(name: 'FrontEnd')
@@ -231,6 +227,7 @@ WebConfig.create(
 
 #HomeBanner.create(title: 'cApp', body:'Praesent vitae eros at ex maximus aliquet eu ac nisi. Aliquam erat volutpat.')
 
+Cadmin::Event.all.each { |event| event.update!(total_amount: event.total_services_amount) }
 
 puts Cadmin::Service.last&.name 
 puts Cadmin::ArticleCategory.last&.name 

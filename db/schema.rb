@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_182420) do
+ActiveRecord::Schema.define(version: 2021_12_29_170012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
     t.string "title", null: false
     t.text "content", null: false
     t.integer "status", default: 0, null: false
-    t.date "published_at", default: "2022-01-31", null: false
+    t.date "published_at", default: "2022-02-11", null: false
     t.date "unpublished_at"
     t.string "metatitle"
     t.string "metadata"
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
   end
 
   create_table "cadmin_event_types", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.float "salary", default: 0.0, null: false
     t.float "overtime_price", default: 0.0, null: false
     t.float "assemble", default: 0.0, null: false
@@ -203,24 +203,29 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
   end
 
   create_table "cadmin_events", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "employee_id"
-    t.integer "cart_id"
-    t.string "status", default: "pending", null: false
-    t.string "title"
-    t.string "type_name", default: "boda", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "employee_id"
     t.string "number", null: false
-    t.date "date", null: false
-    t.integer "guests"
-    t.integer "place_id"
     t.float "deposit", default: 0.0, null: false
     t.float "total_amount", default: 0.0, null: false
+    t.bigint "cart_id"
+    t.string "title"
+    t.string "status", default: "pending", null: false
+    t.bigint "event_type_id", null: false
+    t.date "date", null: false
+    t.integer "guests"
+    t.bigint "place_id"
     t.boolean "charged", default: false, null: false
     t.boolean "employee_paid", default: false, null: false
     t.text "observations"
     t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_cadmin_events_on_cart_id"
+    t.index ["customer_id"], name: "index_cadmin_events_on_customer_id"
+    t.index ["employee_id"], name: "index_cadmin_events_on_employee_id"
+    t.index ["event_type_id"], name: "index_cadmin_events_on_event_type_id"
+    t.index ["place_id"], name: "index_cadmin_events_on_place_id"
     t.index ["slug"], name: "index_cadmin_events_on_slug", unique: true
   end
 
@@ -589,6 +594,11 @@ ActiveRecord::Schema.define(version: 2022_01_03_182420) do
   add_foreign_key "cadmin_event_services", "cadmin_discounts", column: "discount_id"
   add_foreign_key "cadmin_event_services", "cadmin_events", column: "event_id"
   add_foreign_key "cadmin_event_services", "cadmin_services", column: "service_id"
+  add_foreign_key "cadmin_events", "cadmin_carts", column: "cart_id"
+  add_foreign_key "cadmin_events", "cadmin_event_types", column: "event_type_id"
+  add_foreign_key "cadmin_events", "cadmin_locations", column: "place_id"
+  add_foreign_key "cadmin_events", "cadmin_users", column: "customer_id"
+  add_foreign_key "cadmin_events", "cadmin_users", column: "employee_id"
   add_foreign_key "cadmin_interview_options", "cadmin_interviews", column: "interview_id"
   add_foreign_key "cadmin_interviews", "cadmin_events", column: "event_id"
   add_foreign_key "cadmin_messages", "cadmin_conversations", column: "conversation_id"

@@ -33,6 +33,7 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'letter_opener'
+  gem 'bullet'
 end
 
 group :test do
@@ -75,8 +76,8 @@ gem "rack-cors"
 gem "rspotify"
 gem "active_model_serializers"
 gem "rspec-rails"
-gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git', branch: 'main'
-#  gem 'cadmin', path: '../cadmin'
+# gem 'cadmin', git: 'git@github.com:ciscoLegrand/cAdmin.git', branch: 'main'
+ gem 'cadmin', path: '../cadmin'
   
 
 
