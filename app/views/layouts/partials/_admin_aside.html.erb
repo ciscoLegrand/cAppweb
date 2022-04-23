@@ -71,27 +71,11 @@
           <% end %>
         </li>
         <li>
-          <%= link_to services_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'services', action: 'click->menu#set_active_menu_item'}  do %>
-            <span class="panel-icon ">
-              <%= inline_svg_tag('icons/ico-edit.svg', class: 'icon  has-text-info')%>
-            </span>        
-            <span class="name">Servicios</span>
-          <% end %>
-        </li>
-        <li>
           <%= link_to email_contacto_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'contacts', action: 'click->menu#set_active_menu_item'}  do %>
             <span class="panel-icon ">
               <%= inline_svg_tag('icons/ico-at-symbol.svg', class: 'icon  has-text-info')%>
             </span>        
             <span class="name">Email contacto</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to usuarios_path , class: 'item panel-block is-flex is-justify-content-flex-start is-align-items-start is-clickable is-hoverable has-no-bottom-line', data: {'menu-target': 'link', 'menu-item': 'users', action: 'click->menu#set_active_menu_item'}  do %>
-            <span class="panel-icon ">
-              <%= inline_svg_tag('icons/ico-users.svg', class: 'icon  has-text-info')%>
-            </span>        
-            <span class="name">Usuarios</span>
           <% end %>
         </li>
         <% if current_cadmin_user.superadmin? %>
