@@ -81,12 +81,12 @@ class WebController < ApplicationController
 
   def web_cart 
       add_breadcrumb 'Carrito'
-      @total_cart_amount = @cart.total_cart_amount
+      @total_cart_amount = @cart.present? ? @cart.total_cart_amount : 0
       @main_service = @main_service
   end
   
   def web_profile
-    add_breadcrumb 'Cuenta', profile_path
+    add_breadcrumb "Perfil > #{current_cadmin_user.name.capitalize}", profile_path
     
     @events = Cadmin::Event.where(customer_id: @user.id) 
     @conversations = Cadmin::Conversation.all

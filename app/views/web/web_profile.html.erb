@@ -28,6 +28,11 @@
   </ul>
 </div>
 
+  <div class="container">
+    <% @events.each do |event| %>
+      <%= event.inspect %>  |||| <%= current_cadmin_user.id %>  <br>
+    <% end %>
+  </div>
 
   <%= turbo_frame_tag :conversations do %>
     <div class="columns">

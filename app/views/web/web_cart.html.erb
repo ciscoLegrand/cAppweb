@@ -1,7 +1,7 @@
 <div class="container">
   <div class="columns is-multiline is-mobile is-flex-direction-row is-justify-content-space-between">
     <div class="column is-8-desktop is-12-touch">
-      <% if @cart.cart_items.empty?  %>
+      <% unless @cart&.cart_items.present?  %>
         <div class="column is-12">
           Aun no has añadido items a tu cesta <br>
           <%= link_to 'Seguir comprando', root_path, class: 'button is-success is-medium' %>
@@ -35,10 +35,17 @@
       <div class="is-flex is-flex-direction-column">
         Total: <%= number_to_currency  @total_cart_amount %>
         <hr>
+        <% if @cart&.cart_items.present? %>
         Total: <%= pluralize @cart.cart_items.count, 'servicio', plural: 'servicios' %>
         <hr>  
-        <%= link_to 'Completar reserva', cadmin.new_event_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
-        
+        <% if current_cadmin_user.present? %>
+          <%= link_to 'Completar reserva', cadmin.new_event_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
+        <% else %>
+          <h2>Para completar tu reserva debes iniciar sesion</h2>
+          <%= link_to 'sign up', cadmin.registration_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
+          <%= link_to 'login', cadmin.login_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
+        <% end %>
+        <% end %>
       </div>
     </div>  
   </div>
