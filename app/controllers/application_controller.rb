@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   # for pagination
   include Pagy::Backend
- 
+  
+  before_action :set_social_links
   before_action :set_locale
   protect_from_forgery with: :null_session
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -28,5 +29,16 @@ class ApplicationController < ActionController::Base
 
     def set_services
       @services = Cadmin::Service.all
+    end
+
+    def set_social_links
+      url = WebConfig.first
+      @social_links = [
+        { link: url&.url_facebook,  name: 'facebook',   icon: 'ico-facebook.svg'  },
+        { link: url&.url_instagram, name: 'instagram',  icon: 'ico-instagram.svg' },
+        { link: url&.url_twitter,   name: 'twitter',    icon: 'ico-twitter.svg'   },
+        { link: url&.url_pinterest, name: 'pinterest',  icon: 'ico-pinteres.svg'  },
+        { link: url&.url_bodas_net, name: 'bodas_net',  icon: 'ico-bodasnet.svg'  },
+      ]
     end
 end

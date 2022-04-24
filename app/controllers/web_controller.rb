@@ -1,14 +1,16 @@
 class WebController < ApplicationController
   before_action :set_main_service, only: %w[web_services web_service ]
   before_action :set_service, only: %w[web_service]
+  before_action :set_banners, only: %w[web_home]
   before_action :set_user, only: %w[web_profile]
   before_action :set_cart
 
   def web_home
     @home = true
-    @banner_uno = HomeBanner.first
-    @banner_dos = HomeBanner.second
-    @banner_tres = HomeBanner.third
+
+    @banner_uno = @banners.first
+    @banner_dos = @banners.second
+    @banner_tres = @banners.third
     @awards = Award.first
     @opinions = Opinion.all
     @abouts = About.all
@@ -107,5 +109,9 @@ class WebController < ApplicationController
 
     def set_user 
       @user ||= current_cadmin_user
+    end
+
+    def set_banners 
+      @banners = HomeBanner.all
     end
 end

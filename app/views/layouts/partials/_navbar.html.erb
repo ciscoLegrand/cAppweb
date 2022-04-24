@@ -37,11 +37,10 @@
         <div class="navbar-end">
                
           <div class="navbar-item">
-            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_facebook,  name: 'facebook',ico: 'ico-facebook.svg'))     %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_instagram, name: 'instagram',ico: 'ico-instagram.svg'))   %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_twitter,   name: 'tiwtter',ico: 'ico-twitter.svg'))       %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_pinterest, name: 'pinterest',ico: 'ico-pinterest.svg'))   %>
-            <%= render(SocialLinkComponent.new(href: WebConfig.first&.url_bodas_net, name: 'bodas_net',ico: 'ico-bodasnet.svg'))    %>
+            <% @social_links.each do |component| %>
+              <%= render(SocialLinkComponent.new(href: component[:link],  name: component[:name],ico: component[:icon])) %>
+            <% end %>
+
             <%= link_to inline_svg('cadmin/icons/ico-shopping-cart.svg', size: '32'), cart_path, class:'is-clickable has-text-primary' %>
             <div class="is-flex is-justify-content-center mx-3">
               <%= content_tag :div, @cart.cart_items.count, class:'tag is-rounded is-primary' if @cart.present? %>

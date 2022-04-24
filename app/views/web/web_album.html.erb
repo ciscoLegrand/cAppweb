@@ -1,7 +1,6 @@
 <%= turbo_frame_tag :web_album do %>
   <div class="container">  
     <h1 class="title is-1 has-text-centered py-6"> <%= @album.title %></h1>
-    <h3><%= Gallery.where(album_id: Album.find(params[:album_id])).first.images.length if current_cadmin_user.present? && current_cadmin_user.admin? %></h3>
   </div>
   
   <div class="container my-3">  
@@ -19,28 +18,4 @@
     </div>
     <%== pagy_bulma_nav(@pagy)%> 
   </div>
-<% end %>
-
-
-<% if 1==0 %>
-  
-  <!--contenedor galeria principal-->
-  <% if @album.present? %>
-    <div class="container">
-      <div class="lb-images">
-        <div class="columns is-multiline is-pull-left">
-          <% @gallery.each do |gallery| %>
-            <% if gallery.images.attached?%>
-                <div class="images" data-controller="lightbox" data-lightbox-options-value='{"controls": true, "loop":true}'>
-                  <% gallery.images.each do |imagen| %>
-                    <%= image_tag url_for(imagen), data: {src: "#{rails_blob_url(imagen)}"}, class:"column is-3 col-light is-5by3" %>
-                  <% end %>
-                </div>
-            <% end %> 
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <!--contenedor galeria principal-->
 <% end %>
