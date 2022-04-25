@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     get '(*)', to: redirect(host: 'lagramoladisco.com/galerias')
   end
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root 'web#web_home'
 
   resources :web_configs
