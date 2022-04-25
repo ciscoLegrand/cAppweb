@@ -1,13 +1,12 @@
 class ScrapeOpinionsJob < ApplicationJob
+  require 'open-uri'
+  require 'net/http'
+  require 'nokogiri'
   queue_as :default
 
   def perform()
-    puts 'hostias en verso'
-    require 'nokogiri'
-    # Do something later
     url = 'https://www.bodas.net/musica/la-gramola-discotecas-moviles--e15600/opiniones'
     doc = Nokogiri::HTML(open(url))
-  
     doc.css(".storefrontReviewsTile").each do |item|
       opinion = {}
   
@@ -16,8 +15,7 @@ class ScrapeOpinionsJob < ApplicationJob
       opinion[:ratingStar] = item.at_css(".rating__count")&.text
       opinion[:name] = item.at_css('.storefrontReviewsTileInfo')&.text
       opinion[:wedding_date] = item.at_css('.storefrontReviewsTileInfo__date')&.text
-      Opinion.where(opinion).first_or_createç
-      puts opinion
+      Opinion.where(opinion).first_or_create
     end
   end
 end

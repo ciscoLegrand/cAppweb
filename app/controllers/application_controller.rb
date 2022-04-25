@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   #jobs
   before_action :run_update_status_event_job
+  before_action :get_opinions_from_bodasnet
   
   protected
     def set_locale

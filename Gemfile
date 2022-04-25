@@ -56,6 +56,7 @@ end
 gem 'image_processing', "~> 1.8" #'~> 1.2'
 #webscrapping
 gem 'kimurai', '~> 1.4'
+gem 'nokogiri'
 # digital ocean spaces
 gem 'aws-sdk-s3'
 

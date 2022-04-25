@@ -476,6 +476,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   kimurai (~> 1.4)
   letter_opener
+  nokogiri
   pagy
   pg
   pg_search
