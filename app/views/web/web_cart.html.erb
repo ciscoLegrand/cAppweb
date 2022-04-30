@@ -1,6 +1,7 @@
+<% cnt = 0 %>
 <div class="container">
   <div class="columns is-multiline is-mobile is-flex-direction-row is-justify-content-space-between">
-    <div class="column is-8-desktop is-12-touch">
+    <div class="column is-7-desktop is-12-touch">
       <% unless @cart&.cart_items.present?  %>
         <div class="column is-12">
           Aun no has añadido items a tu cesta <br>
@@ -8,9 +9,16 @@
         </div>
       <% else %>
         <% @cart.cart_items.each do |item|%>
+          <% available = true
+            if params[:date].present?
+              if Cadmin::StockByDate.find_by(service_id: Cadmin::Service.find(item.service_id), date: params[:date]).present?
+                available = Cadmin::StockByDate.find_by(service_id: Cadmin::Service.find(item.service_id), date: params[:date])&.stock_available?
+                cnt += Cadmin::StockByDate.find_by(service_id: Cadmin::Service.find(item.service_id), date: params[:date]).stock_available? ? 0 : 1
+              end
+            end %>
           <div class="column is-12">
-            <div class="card is-flex">
-              <div class="card-image p-3">
+            <div class="card p-3 is-flex is-justify-content-center <%= available ? '' : 'has-background-warning-light'%>">
+              <div class="card-image p-3 is-flex is-justify-content-center is-align-content-center is-align-items-center">
                 <figure class="image is-96x96">                  
                   <% if item.service_image_url.present? %>
                     <%= image_tag item.service_image_url %>
@@ -19,32 +27,50 @@
                   <% end %>                  
                 </figure>
               </div>
-              <div class="media-content is-flex is-justify-content-space-evenly is-align-items-center mx-4">
-                <div class="title is-4 is-flex-shrink-1 is-fullwidth py-3"><%= item.service_name%></div>
-                <div class="subtitle is-6 is-flex-shrink-1 is-fullwidth"><%= item.service_short_dscription %></div>
-                <div class="mx-4 is-flex-shrink-1 is-fullwidth"><%= number_to_currency item.service_price %></div>
-                
-                <%= button_to 'Eliminar',cadmin.cart_item_path(Cadmin::CartItem.find(item.id)), method: :delete, data: { controller: "swal", action: "click->swal#fire", swal_options_value: default_swal_options,turbo_frame: "_top" }, class:"tag is-medium is-danger is-flex-shrink-1" %>
+              <div class="media-content is-flex is-flex-direction-column is-justify-content-space-evenly is-align-items-center mx-4">
+                <div class="title is-4 is-flex-shrink-1 is-fullwidth py-3 has-text-centered"><%= item.service_name%></div>
+                <div class="subtitle is-6 is-flex-shrink-1 is-fullwidth tag has-text-centered"><%= available ? "Disponible" : "Agotado" %></div>
+                <div class="mx-4 is-flex-shrink-1 is-fullwidth has-text-centered is-size-5"><%= number_to_currency item.service_price %></div>
+              </div>
+              <div class="is-flex is-justify-content-center is-align-content-center is-align-items-center">        
+                <%= button_to cadmin.cart_item_path(Cadmin::CartItem.find(item.id)), method: :delete, data: { controller: "swal", action: "click->swal#fire", swal_options_value: default_swal_options,turbo_frame: "_top" }, class:"button is-white is-small is-clickable is-flex-shrink-1 is-borderless p-3 " do %>
+                  <%= inline_svg_tag('icons/ico-trash.svg', size: '22px')%>
+                <% end %>
               </div>
             </div>
           </div>         
         <% end %>
       <% end %>
     </div>
-    <div class="column is-4-desktop is-12-touch">
+    <div class="column is-5-desktop is-12-touch">
       <div class="is-flex is-flex-direction-column">
         Total: <%= number_to_currency  @total_cart_amount %>
         <hr>
         <% if @cart&.cart_items.present? %>
-        Total: <%= pluralize @cart.cart_items.count, 'servicio', plural: 'servicios' %>
-        <hr>  
-        <% if current_cadmin_user.present? %>
-          <%= link_to 'Completar reserva', cadmin.new_event_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
-        <% else %>
-          <h2>Para completar tu reserva debes iniciar sesion</h2>
-          <%= link_to 'sign up', cadmin.registration_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
-          <%= link_to 'login', cadmin.login_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
-        <% end %>
+          Total: <%= pluralize @cart.cart_items.count, 'servicio', plural: 'servicios' %>
+          <hr>  
+          <% if current_cadmin_user.present? %>
+            <%= link_to 'Completar reserva', cadmin.new_event_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? || cnt > 0 || !params[:date].present? %>
+          <% else %>
+            <h2>Para completar tu reserva debes iniciar sesion</h2>
+            <%= link_to 'sign up', cadmin.registration_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
+            <%= link_to 'login', cadmin.login_path, class: 'button is-primary is-medium mt-4' unless @cart.cart_items.empty? %>
+          <% end %>
+          <hr>
+          <h3 class="subtitle is-size-5-desktop is-size-6-mobile has-background-info-light has-text-info p-4"> Confirma la disponibilidad de los servicios para continuar con la reserva</h3>
+          <%= form_tag cart_path, method: :get, class: 'box' do %>
+            <div class="field has-addons " >
+              <div class="control" style="width: 100%;">
+                <%= date_field_tag :date, params[:date], class: 'input is-medium' %>
+              </div>
+              <div class="control">
+                <%= submit_tag "diponibilidad", :name => nil, class: 'button is-medium is-primary' %>
+              </div>
+            </div>
+          <% end %>
+          <% if cnt > 0 %>
+            <h3 class="subtitle has-background-warning-light has-text-warning is-size-5-desktop is-size-6-mobile p-4"> Debes eliminar <%= cnt %> servicios para poder continuar con la reserva</h3>
+          <% end %>
         <% end %>
       </div>
     </div>  
