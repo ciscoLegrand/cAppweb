@@ -41,9 +41,6 @@ class WebController < ApplicationController
     else
       @available = false
     end
-
-
-
   end
 
   def web_search_results
