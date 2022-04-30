@@ -34,7 +34,7 @@ class WebController < ApplicationController
 
     if params[:date].present?
       if Cadmin::StockByDate.find_by(service_id: @service.id, date: params[:date]).present?
-        @available = Cadmin::StockByDate.find_by(service_id: @service.id, date: params[:date]).stock_avilable?
+        @available = Cadmin::StockByDate.find_by(service_id: @service.id, date: params[:date]).stock_available?
       else
         @available = true
       end
