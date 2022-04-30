@@ -30,6 +30,20 @@ class WebController < ApplicationController
 
   def web_service
     add_breadcrumb @service.name, servicio_path
+    @stock_by_dates = Cadmin::StockByDate.find_by(service_id: @service.id)
+
+    if params[:date].present?
+      if Cadmin::StockByDate.find_by(service_id: @service.id, date: params[:date]).present?
+        @available = Cadmin::StockByDate.find_by(service_id: @service.id, date: params[:date]).stock_avilable?
+      else
+        @available = true
+      end
+    else
+      @available = false
+    end
+
+
+
   end
 
   def web_search_results

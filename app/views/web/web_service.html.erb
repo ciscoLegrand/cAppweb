@@ -13,12 +13,32 @@
       <div class="mb-3">
         <%= @service.short_dscription %>
       </div>
+      <div class="box">
+        <%= form_tag servicio_path(@service.main_service_id, @service), method: :get do %>
+          <div class="field has-addons " >
+            <div class="control">
+              <%= date_field_tag :date, params[:date], class: 'input is-medium' %>
+            </div>
+            <div class="control">
+              <%= submit_tag :disponibilidad, :name => nil, class: 'button is-medium is-primary' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
       <div class="is-size-3-desktop is-size-4-touch my-3">
         <%= number_to_currency @service.price %>
       </div>
-      <div class="is-flex is-justify-content-space-between my-4">
-        <%= link_to 'Add!', cadmin.add_to_cart_path(@service), class: 'button is-info  is-flex-grow-1 mr-2 is-fullwidth' %>
-      </div>
+
+      <% if @available %>
+        <div class="is-flex is-justify-content-space-between my-4">
+          <%= link_to 'Add!', cadmin.add_to_cart_path(@service), class: 'button is-info  is-flex-grow-1 mr-2 is-fullwidth' %>
+        </div>
+      <% else %>
+        <div class="is-flex is-justify-content-space-between my-4 has-background-warning-light has-text-warning is-radiusless p-3" >
+          Lo sentimos pero todos los <%= @service.name %> están reservados para el <%= params[:date] %>
+        </div>
+      <% end %>
 
       <div class="service__content">
         <h4 class="subtitle is-size-4-destop is-size-5-touch mb-2">Descripción</h4>
