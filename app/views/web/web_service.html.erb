@@ -29,14 +29,19 @@
       <div class="is-size-3-desktop is-size-4-touch my-3">
         <%= number_to_currency @service.price %>
       </div>
-
-      <% if @available %>
-        <div class="is-flex is-justify-content-space-between my-4">
-          <%= link_to 'Add!', cadmin.add_to_cart_path(@service), class: 'button is-info  is-flex-grow-1 mr-2 is-fullwidth' %>
-        </div>
+      <% if params[:date].present? %>
+        <% if @available %>
+          <div class="is-flex is-justify-content-space-between my-4">
+            <%= link_to 'Add!', cadmin.add_to_cart_path(@service), class: 'button is-info  is-flex-grow-1 mr-2 is-fullwidth' %>
+          </div>
+        <% else %>
+          <div class="is-flex is-justify-content-space-between my-4 has-background-warning-light has-text-warning is-radiusless p-3" >
+            Lo sentimos pero todos los <%= @service.name %> están reservados para el <%= params[:date] %>
+          </div>
+        <% end %>
       <% else %>
-        <div class="is-flex is-justify-content-space-between my-4 has-background-warning-light has-text-warning is-radiusless p-3" >
-          Lo sentimos pero todos los <%= @service.name %> están reservados para el <%= params[:date] %>
+        <div class="is-flex is-justify-content-space-between my-4 has-background-info-light has-text-info is-radiusless p-3" >
+          Comprueba si está dispinible <%= @service.name %> para la fecha de tu evento
         </div>
       <% end %>
 
