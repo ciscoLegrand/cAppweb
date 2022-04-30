@@ -5,17 +5,23 @@
     <button class="button is-small is-primary" aria-label="delete" data-action="click->notification#hidden">Aceptar</button>
   </div>
 </article>
-<footer class="is-large has-background-primary">
+<footer class="is-large has-background-black">
   <div class="columns p-2">
-    <div class="column is-4 has-text-left-desktop has-text-centered-touch has-text-white">
+    <div class="column is-3 has-text-left-desktop has-text-centered-touch has-text-white">
       <%= this_year %> <strong><%= WebConfig.first&.enterprise_name %></strong> Servicios para Eventos en Galicia.
     </div>
-    <div class="column is-4 has-text-centered ">
+    <div class="column is-3 has-text-centered ">
       <%= link_to 'Aviso legal', legal_path, class:'is-hoverable has-text-white' %> |
       <%= link_to 'Política Privacidad', privacidad_path, class:'is-hoverable has-text-white' %> |
       <%= link_to 'Cookies', cookies_path, class:'is-hoverable has-text-white'%>
     </div>
-    <div class="column is-4 has-text-right-desktop has-text-centered-touch has-text-white">
+    <div class="column is-3 has-text-centered ">
+      <% @social_links.each do |component| %>
+        <%= render(SocialLinkComponent.new(href: component[:link],  name: component[:name],ico: component[:icon])) %>
+      <% end %>
+    </div>
+
+    <div class="column is-3 has-text-right-desktop has-text-centered-touch has-text-white">
       Desarrollado por <strong>creaDix</strong> 
     </div>
   </div>
