@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   before_action :set_main_services
   # before_action :set_services
-
-  #jobs
-  before_action :run_update_status_event_job
-  before_action :get_opinions_from_bodasnet
   
   protected
     def set_locale
@@ -43,14 +39,4 @@ class ApplicationController < ActionController::Base
         { link: url&.url_bodas_net, name: 'bodas_net',  icon: 'ico-bodasnet.svg'  },
       ]
     end
-
-    
-  def run_update_status_event_job
-    Cadmin::UpdateStatusEventJob.set(wait: 1.day).perform_later(@events)
-  end
-
-  def get_opinions_from_bodasnet 
-    url = 'https://www.bodas.net/musica/la-gramola-discotecas-moviles--e15600/opiniones'
-    ScrapeOpinionsJob.set(wait: 1.day).perform_later(url)
-  end
 end
