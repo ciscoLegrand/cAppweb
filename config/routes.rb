@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   end
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :cadmin_user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => 'cadmin/sidekiq'
+  end
+
 
   root 'web#web_home'
 
