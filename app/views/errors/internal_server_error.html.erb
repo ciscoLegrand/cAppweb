@@ -1,0 +1,11 @@
+<section class="container mx-auto px-4 has-text-centered">
+  <div class="max-w-auto mx-auto">
+    <div class="is-fullwidth">
+      <!-- llustration by Ouch.pics https://icons8.com/ouch/illustration/cherry-list-is-empty-1 -->
+      <%= inline_svg('errors/500.svg', size: '640', class:" p-0")%>                    
+    </div>
+    <h2 class="mt-4 title is-capitalized is-size-2-desktop is-black">Lo sentimos, ocurrió un error interno del servidor</h2>
+    <p class="mt-4 subtitle is-capitalized is-size-3-desktop">El sitio está temporalmente inactivo, estamos trabajando para solucionarlo</p>
+    <%= link_to 'Volver', '/', class:"mt-2 button is-primary has-text-white is-light is-size-4-desktop" %>
+  </div>
+</section>

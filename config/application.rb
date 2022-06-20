@@ -34,6 +34,8 @@ module GalleryApp
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_job.queue_adapter = :sidekiq
 
+    config.exceptions_app = self.routes
+
     config.i18n.available_locales = [:es]
     config.i18n.default_locale = :es
     config.i18n.fallbacks = true

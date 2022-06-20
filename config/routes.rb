@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :quotes
   resources :service_objects
- 
+  
   # custom routes for web public client access
   match 'carrito',                                          to: 'web#web_cart',                 via: [:get, :post], as: :cart
   match 'servicios/:main_service_id',                       to: 'web#web_services',             via: :get,          as: :main_service
@@ -61,7 +61,8 @@ Rails.application.routes.draw do
   match 'email-contacto',                                   to: "contacts#index",               via: :get
   get '/galeria/:album_id',                                 to: 'web#web_album',                                    as: :galeria
   
-
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
   # devise_for :users, :controllers => { 
   #   sessions: 'users/sessions',
   #   registrations: 'users/registrations' 
