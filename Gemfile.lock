@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:ciscoLegrand/cAdmin.git
-  revision: f682ec9846427251d6f1153732b7260a6a5751ce
+  revision: 632d682a9895ceb765354400e9cfef19a5d8ecee
   branch: main
   specs:
     cadmin (0.1.3)
@@ -415,7 +415,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (0.2.4)
       rails (>= 6.0.0)
-    stripe (6.0.0)
+    stripe (6.4.0)
     thor (1.2.1)
     tilt (2.0.10)
     turbo-rails (1.0.1)

@@ -29,7 +29,7 @@
     <%= render NotificationComponent.with_collection(flash.to_a) %>
     <div class="columns is-fullheight has-background-white-ter m-0 is-full-height">
       <%= render 'layouts/partials/admin_aside' if (cadmin_user_signed_in? and current_cadmin_user.admin?) %>
-      <main class= "column <%= cadmin_user_signed_in? ? 'main is-10 is-offset-2 p-0' : 'is-12 has-background-primary' %> is-vcentered" >
+      <main class= "column <%= cadmin_user_signed_in? ? 'main is-10 is-offset-2 p-0' : 'is-12' %> is-vcentered" >
         <% if cadmin_user_signed_in? %>
           <header class="header panel-heading">
             <div class="is-flex is-align-items-center">
