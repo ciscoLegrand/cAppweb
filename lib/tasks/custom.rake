@@ -10,7 +10,7 @@ task scrape: :environment do
   # res = Net::HTTP.get_response(uri)
   #  res.body
   #  response = Nokogiri::HTML(res.body)
-   doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(url))
 
   doc.css(".storefrontReviewsTile").each do |item|
     opinion = {}
@@ -20,13 +20,15 @@ task scrape: :environment do
     opinion[:ratingStar] = item.at_css(".rating__count")&.text
     opinion[:name] = item.at_css('.storefrontReviewsTileInfo')&.text
     opinion[:wedding_date] = item.at_css('.storefrontReviewsTileInfo__date')&.text
-     Opinion.where(opinion).first_or_create
+    op = Opinion.where(opinion).first_or_create
+    puts op.title
+    puts op.body
   end
   puts Opinion.count
 end
 
 task import_events: :environment do  
-  CSV.foreach(File.join(Rails.root, 'public', 'files','fran21.csv'), headers: true) do |row|
+  CSV.foreach(File.join(Rails.root, 'public', 'files','fran22.csv'), headers: true) do |row|
     ca = row[0].split(';') if row[0].present?
     if ca[1].present?
       services = ca[3].present? ? ca[3].split(' + ') : ['gramola']
