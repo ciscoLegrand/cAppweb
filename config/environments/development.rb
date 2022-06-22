@@ -102,8 +102,8 @@ Rails.application.configure do
     domain:               ENV['SMTP_DOMAIN'],
     user_name:            ENV['GMAIL_ACCOUNT'],
     password:             ENV['GMAIL_PASS'],
-    authentication:       'plain'
-    # enable_starttls_auto: true
+    authentication:       'plain',
+    enable_starttls_auto: true
     # ^ ^ remove this option ^ ^
    }
 end
