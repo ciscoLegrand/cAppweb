@@ -12,7 +12,7 @@
           <div class="buttons is-justify-content-center">
             <% if current_cadmin_user.admin? %>
               <%= link_to inline_svg_tag('icons/ico-eye.svg', class: ' icon is-medium has-text-primary'), opinion,  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
-              <%= link_to inline_svg_tag('icons/ico-edit.svg', class: ' icon is-medium has-text-primary'), edit_opinion_path(opinion),  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
+              <%#= link_to inline_svg_tag('icons/ico-edit.svg', class: ' icon is-medium has-text-primary'), edit_opinion_path(opinion),  data:{turbo_frame: "_top"}, class: 'button is-clickable' %>
               <%= button_to opinion , method: :delete,data: { controller: "swal", action: "click->swal#fire", swal_options_value: default_swal_options, turbo_frame: "_top" }, class: 'button is-clickable' do  %>
                 <%= inline_svg_tag('icons/ico-trash.svg', class: 'icon is-medium has-text-primary is-clickable') %>
               <% end %>
@@ -22,4 +22,5 @@
       <% end %>
     <% end %>
   <% end %>
+  <%== pagy_bulma_nav(@pagy)%>
 <% end %>
