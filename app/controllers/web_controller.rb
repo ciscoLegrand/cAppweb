@@ -104,15 +104,12 @@ class WebController < ApplicationController
     @events = Cadmin::Event.where(customer_id: @user.id) 
     @conversations = Cadmin::Conversation.all
     
-  end
-  
   def web_checkout_success 
   end
-
-  def web_checkout_cancel 
-    
+  
+  def web_checkot_cancel 
   end
-    
+  
   private 
     def set_main_service 
       @main_service =  Cadmin::MainService.friendly.find(params[:main_service_id])
