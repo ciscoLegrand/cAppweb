@@ -1,0 +1,25 @@
+
+<div class="section is-flex is-justify-content-center">
+  <div class="box columns is-multiline">
+
+    <div class="column is-two-thirds is-flex-direction-column">
+      <h1 class="title is-size-5 has-text-centered">
+       Lo sentimos compañero
+      </h1>
+      <p class="subtitle has-text-centered">
+       Algo ha salido mal y no se ha completado la reserva de servicios.
+      </p>
+      <p class="subtitle has-text-centered">
+        Puedes comunicarte con nosotros a traves del siguiente email: <%= mail_to WebConfig.first.global_email %> 
+        ó bien por telefono ó whatsapp en el número: <%= phone_to WebConfig.first.contact_phone %>
+      </p>
+    </div>
+    
+    <div class="column is-one-third is-flex is-justify-content-center">
+      <figure class="image is-128x128"><!--TODO: IMAGE SUCCESSFULL AND CANCEL CHECKOUT -->
+        <img src="https://bulma.io/images/placeholders/256x256.png">
+      </figure>
+    </div>
+
+  </div>
+</div>
