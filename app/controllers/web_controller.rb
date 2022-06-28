@@ -79,14 +79,17 @@ class WebController < ApplicationController
   end
 
   def web_cart 
-      add_breadcrumb 'Carrito'
-      @total_cart_amount = @cart.total_cart_amount
-      @main_service = @main_service
+    add_breadcrumb 'Carrito'
+    @total_cart_amount = @cart.total_cart_amount
+    @main_service = @main_service
   end
     
+  def web_checkout_success 
+  end
+  def web_checkot_cancel 
+  end
   
-    
-    private 
+  private 
     def set_main_service 
       @main_service =  Cadmin::MainService.friendly.find(params[:main_service_id])
     end 
